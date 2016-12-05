@@ -2,7 +2,7 @@
   "name": "contributte/latte",
   "description": "Extra contrib to nette/latte",
   "keywords": ["nette", "latte", "extra"],
-  "type": "project",
+  "type": "library",
   "license": ["MIT"],
   "homepage": "https://github.com/contributte/latte",
   "authors": [
