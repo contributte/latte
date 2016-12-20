@@ -25,7 +25,7 @@ composer require contributte/latte
 
 ### VersionExtension
 
-This extension add 3 macros: `{rev}`, `{build}`, `{v}`.
+This extension adds 3 macros: `{rev}`, `{build}`, `{v}`.
 
 ```yaml
 extensions:

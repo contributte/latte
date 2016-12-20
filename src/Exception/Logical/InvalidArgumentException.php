@@ -4,7 +4,7 @@ namespace Contributte\Latte\Exception\Logical;
 
 use Contributte\Latte\Exception\LogicalException;
 
-final class InvalidArgumentException extends LogicalException
+class InvalidArgumentException extends LogicalException
 {
 
 }

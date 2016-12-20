@@ -8,7 +8,7 @@ use Latte\MacroNode;
 use Latte\Macros\MacroSet;
 use Latte\PhpWriter;
 
-final class VersionMacros extends MacroSet
+class VersionMacros extends MacroSet
 {
 
 	/** @var array */
@@ -23,7 +23,6 @@ final class VersionMacros extends MacroSet
 		parent::__construct($compiler);
 		$this->config = $config;
 	}
-
 
 	/**
 	 * @param Compiler $compiler

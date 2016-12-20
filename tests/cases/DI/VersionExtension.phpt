@@ -16,23 +16,23 @@ use Tester\FileMock;
 require_once __DIR__ . '/../../bootstrap.php';
 
 test(function () {
-    $loader = new ContainerLoader(TEMP_DIR, TRUE);
-    $class = $loader->load(function (Compiler $compiler) {
-        $compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
-        $compiler->addExtension('version', new VersionExtension());
-        $compiler->loadConfig(FileMock::create('
+	$loader = new ContainerLoader(TEMP_DIR, TRUE);
+	$class = $loader->load(function (Compiler $compiler) {
+		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
+		$compiler->addExtension('version', new VersionExtension());
+		$compiler->loadConfig(FileMock::create('
         version:
             rev: 1
             build: 2
             v: 3
         ', 'neon'));
-    }, 1);
+	}, 1);
 
-    /** @var Container $container */
-    $container = new $class;
+	/** @var Container $container */
+	$container = new $class;
 
-    /** @var ILatteFactory $latteFactory */
-    $latteFactory = $container->getByType(ILatteFactory::class);
+	/** @var ILatteFactory $latteFactory */
+	$latteFactory = $container->getByType(ILatteFactory::class);
 
-    Assert::equal('123', $latteFactory->create()->renderToString(FileMock::create('{rev}{build}{v}', 'latte')));
+	Assert::equal('123', $latteFactory->create()->renderToString(FileMock::create('{rev}{build}{v}', 'latte')));
 });

@@ -10,7 +10,7 @@ use Nette\PhpGenerator\PhpLiteral;
 /**
  * @author Milan Felix Sulc <sulcmil@gmail.com>
  */
-final class VersionExtension extends CompilerExtension
+class VersionExtension extends CompilerExtension
 {
 
 	/** @var array */
