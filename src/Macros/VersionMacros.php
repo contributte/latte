@@ -51,7 +51,7 @@ class VersionMacros extends MacroSet
 			throw new InvalidArgumentException('Config field "rev" is not filled');
 		}
 
-		return $writer->write(sprintf('echo %s;', $this->config['rev']));
+		return $writer->write(sprintf('echo "%s";', $this->config['rev']));
 	}
 
 	/**
@@ -65,7 +65,7 @@ class VersionMacros extends MacroSet
 			throw new InvalidArgumentException('Config field "build" is not filled');
 		}
 
-		return $writer->write(sprintf('echo %s;', $this->config['build']));
+		return $writer->write(sprintf('echo "%s";', $this->config['build']));
 	}
 
 	/**
@@ -79,7 +79,7 @@ class VersionMacros extends MacroSet
 			throw new InvalidArgumentException('Config field "v" is not filled');
 		}
 
-		return $writer->write(sprintf('echo %s;', $this->config['v']));
+		return $writer->write(sprintf('echo "%s";', $this->config['v']));
 	}
 
 }

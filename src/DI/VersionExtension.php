@@ -15,6 +15,7 @@ class VersionExtension extends CompilerExtension
 
 	/** @var array */
 	private $defaults = [
+		'debug' => FALSE,
 		'rev' => NULL,
 		'build' => NULL,
 		'v' => NULL,
@@ -32,6 +33,12 @@ class VersionExtension extends CompilerExtension
 
 		if (!$builder->hasDefinition('latte.latteFactory')) {
 			throw new LatteDefinitionNotFoundException();
+		}
+
+		if ($config['debug'] === TRUE) {
+			$config['rev'] = md5(microtime() . mt_rand(0, 100));
+			$config['build'] = md5(microtime() . mt_rand(0, 100));
+			$config['v'] = md5(microtime() . mt_rand(0, 100));
 		}
 
 		$builder->getDefinition('latte.latteFactory')
