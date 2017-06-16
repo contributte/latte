@@ -3,6 +3,7 @@
 ## Content
 
 - [VersionExtension - revision macros for assets](#versions)
+- [RuntimeFilters - collection of prepared filters](#runtime-filters)
 
 ### Version(s)
 
@@ -38,4 +39,29 @@ version:
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={rev}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={build}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
+```
+
+## RuntimeFilters
+
+### `Filectime`
+
+```html
+<link rel="stylesheet" href="{=$basePath/assets/theme.css|filectime}">
+```
+
+```html
+<link rel="stylesheet" href=/assets/theme.css?v=123456789">
+```
+
+### `Email`
+
+```html
+{var $email => 'my@email.cz'}
+
+This is my email: {$email|email}.
+This is my email: {="my@email.cz"|email}.
+```
+
+```html
+This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
 ```

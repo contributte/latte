@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @Test Macros/VersionMacros
+ * @Test Macros\VersionMacros
  */
 
 use Contributte\Latte\Macros\VersionMacros;

@@ -32,6 +32,7 @@ composer require contributte/di
 ## Overview
 
 - [VersionExtension - revision macros for assets](https://github.com/contributte/latte/blob/master/.docs/README.md#versions)
+- [RuntimeFilters - collection of prepared filters](https://github.com/contributte/latte/blob/master/.docs/README.md#runtime-filters)
 
 ## Maintainers
 
