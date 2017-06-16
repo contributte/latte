@@ -6,6 +6,7 @@
 - [FiltersExtension - install filters easily](#filers-extension)
 - [TemplateFactory - events](#templatefactory)
 - [RuntimeFilters - collection of prepared filters](#runtime-filters)
+- [Formatters - collection of prepared formatters](#formatters)
 
 ## Version(s) Extension
 
@@ -127,3 +128,41 @@ This is my email: {="my@email.cz"|email}.
 ```html
 This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
 ```
+
+## Formatters
+
+### `NumberFormatter`
+
+Number formatter is simple wrapping class over `number_format` method. 
+
+```yaml
+services:
+    formatter.money: 
+        # with defined prefix
+        class: Contributte\Latte\Formatters\NumberFormatter('Kč') 
+        
+    formatter.weight: 
+        # with defined prefix and suffix
+        class: Contributte\Latte\Formatters\NumberFormatter('kg', '~')
+        setup:
+            - setThousands(NULL)
+            - setDecimals(0)
+    
+    nette.latteFactory:
+        setup:
+            # used as latte filter
+            - addFilter(money, [@formatter.number, format])
+            - addFilter(weight, [@formatter.weight, format])
+```
+
+Methods:
+
+- `setDecimals(int $decimals)`
+- `setPoint(string $separator)`
+- `setThousands(string $separator)`
+- `setZeros(bool $display)`
+- `setSuffix(string $suffix)`
+- `setPrefix(string $prefix)`
+- `setString(bool $throw)`
+- `setSpaces(bool $display)`
+- `setCallback(callable $callback)`
