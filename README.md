@@ -27,12 +27,16 @@ composer require contributte/di
 
 | State       | Version | Branch   | PHP      |
 |-------------|---------|----------|----------|
-| development | `^0.1`  | `master` | `>= 5.6` |
+| development | `^0.2`  | `master` | `>= 5.6` |
 
 ## Overview
 
-- [VersionExtension - revision macros for assets](https://github.com/contributte/latte/blob/master/.docs/README.md#versions)
-- [RuntimeFilters - collection of prepared filters](https://github.com/contributte/latte/blob/master/.docs/README.md#runtime-filters)
+
+- [VersionExtension - revision macros for assets](https://github.com/contributte/latte/blob/master/.docs/README.md#versions-extension)
+- [FiltersExtension - install filters easily](https://github.com/contributte/latte/blob/master/.docs/README.md#filers-extension)
+- [TemplateFactory - events](https://github.com/contributte/latte/blob/master/.docs/README.md#templatefactory)
+- [RuntimeFilters - collection of prepared filters](https://github.com/contributte/latte/blob/master/.docs/README.md#runtimefilters)
+- [Formatters - collection of prepared formatters](https://github.com/contributte/latte/blob/master/.docs/README.md#formatters)
 
 ## Maintainers
 

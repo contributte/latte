@@ -5,7 +5,7 @@
 - [VersionExtension - revision macros for assets](#versions-extension)
 - [FiltersExtension - install filters easily](#filers-extension)
 - [TemplateFactory - events](#templatefactory)
-- [RuntimeFilters - collection of prepared filters](#runtime-filters)
+- [RuntimeFilters - collection of prepared filters](#runtimefilters)
 - [Formatters - collection of prepared formatters](#formatters)
 
 ## Version(s) Extension
@@ -44,7 +44,7 @@ version:
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
 ```
 
-## Filters(s) Extension
+## Filters Extension
 
 Install filters by single extension and simple `FiltersProvider` implementation.
 
