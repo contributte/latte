@@ -2,10 +2,12 @@
 
 ## Content
 
-- [VersionExtension - revision macros for assets](#versions)
+- [VersionExtension - revision macros for assets](#versions-extension)
+- [FiltersExtension - install filters easily](#filers-extension)
+- [TemplateFactory - events](#templatefactory)
 - [RuntimeFilters - collection of prepared filters](#runtime-filters)
 
-### Version(s)
+## Version(s) Extension
 
 This extension adds 3 macros: `{rev}`, `{build}`, `{v}`.
 
@@ -40,6 +42,66 @@ version:
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={build}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
 ```
+
+## Filters(s) Extension
+
+Install filters by single extension and simple `FiltersProvider` implementation.
+
+### Install
+
+```yaml
+extensions:
+    filters: Contributte\Latte\DI\FiltersExtension
+```
+
+### Usage
+
+First of all, you have to define your own filters provider. It's key => value, I mean name => callback array.
+
+```php
+use Contributte\Latte\Filters\FiltersProvider;
+
+final class MyFilters implements FiltersProvider
+{
+
+	/**
+	 * @return array
+	 */
+	public function getFilters()
+	{
+		return [
+			'say' => function ($hi) {
+				return sprintf('Hi %s!', $hi);
+			},
+		];
+	}
+
+}
+```
+
+After that, add you filters provider as service to your config (neon) file.
+
+```yaml
+services:
+    - MyFilters
+```
+
+That's all.
+
+## TemplateFactory
+
+Our implementation adds `$onCreate` nette-based event.
+
+So you don't need to extends and override stuff, but do it via nette-based `$onCreate` event.
+
+```php
+$templateFactory->onCreate[] = function (Template $template, Control $control = NULL) {
+    // do magic..
+};
+
+```
+
+Easy, right? :gift:
 
 ## RuntimeFilters
 
