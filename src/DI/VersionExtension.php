@@ -4,6 +4,7 @@ namespace Contributte\Latte\DI;
 
 use Contributte\Latte\Exception\Runtime\LatteDefinitionNotFoundException;
 use Contributte\Latte\Macros\VersionMacros;
+use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
 use Nette\PhpGenerator\PhpLiteral;
 
@@ -31,7 +32,7 @@ class VersionExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 		$config = $this->validateConfig($this->defaults);
 
-		if (!$builder->hasDefinition('latte.latteFactory')) {
+		if ($builder->getByType(ILatteFactory::class) === NULL) {
 			throw new LatteDefinitionNotFoundException();
 		}
 
@@ -41,7 +42,7 @@ class VersionExtension extends CompilerExtension
 			$config['v'] = md5(microtime() . mt_rand(0, 100));
 		}
 
-		$builder->getDefinition('latte.latteFactory')
+		$builder->getDefinitionByType(ILatteFactory::class)
 			->addSetup('?->onCompile[] = function ($engine) { ?::install($engine->getCompiler(), ?); }', [
 				'@self',
 				new PhpLiteral(VersionMacros::class),
