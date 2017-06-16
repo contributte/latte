@@ -6,7 +6,6 @@
 
 [![Build Status](https://img.shields.io/travis/contributte/http.svg?style=flat-square)](https://travis-ci.org/contributte/http)
 [![Code coverage](https://img.shields.io/coveralls/contributte/http.svg?style=flat-square)](https://coveralls.io/r/contributte/http)
-[![HHVM Status](https://img.shields.io/hhvm/contributte/http.svg?style=flat-square)](http://hhvm.h4cc.de/package/contributte/http)
 [![Licence](https://img.shields.io/packagist/l/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
 
 [![Downloads this Month](https://img.shields.io/packagist/dm/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
@@ -21,33 +20,35 @@
 ## Install
 
 ```
-composer require contributte/latte
+composer require contributte/di
 ```
 
-## Usage
+## Versions
 
-### VersionExtension
+| State       | Version | Branch   | PHP      |
+|-------------|---------|----------|----------|
+| development | `^0.1`  | `master` | `>= 5.6` |
 
-This extension adds 3 macros: `{rev}`, `{build}`, `{v}`.
+## Overview
 
-```yaml
-extensions:
-    version: Contributte\Latte\DI\VersionExtension
-```
+- [VersionExtension - revision macros for assets](https://github.com/contributte/latte/blob/master/.docs/README.md#versions)
 
-```yaml
-version:
-    rev: e3203c85a9b84ee866132f371ba0b238b6a5b245
-    build: 2016
-    v: 2.12
-```
+## Maintainers
 
-```html
-<link rel="stylesheet" href="{$basePath}/assets/theme.css?v={rev}">
-<link rel="stylesheet" href="{$basePath}/assets/theme.css?v={build}">
-<link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
-```
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/f3l1x">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
+        </a>
+        </br>
+        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
+      </td>
+    </tr>
+  <tbody>
+</table>
 
--------
+---
 
 Thank you for testing, reporting and contributing.
