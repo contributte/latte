@@ -4,14 +4,14 @@
 
 -----
 
-[![Build Status](https://img.shields.io/travis/contributte/http.svg?style=flat-square)](https://travis-ci.org/contributte/http)
-[![Code coverage](https://img.shields.io/coveralls/contributte/http.svg?style=flat-square)](https://coveralls.io/r/contributte/http)
-[![Licence](https://img.shields.io/packagist/l/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
+[![Build Status](https://img.shields.io/travis/contributte/latte.svg?style=flat-square)](https://travis-ci.org/contributte/latte)
+[![Code coverage](https://img.shields.io/coveralls/contributte/latte.svg?style=flat-square)](https://coveralls.io/r/contributte/latte)
+[![Licence](https://img.shields.io/packagist/l/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
 
-[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![Downloads total](https://img.shields.io/packagist/dt/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![Latest stable](https://img.shields.io/packagist/v/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
-[![Latest unstable](https://img.shields.io/packagist/vpre/contributte/http.svg?style=flat-square)](https://packagist.org/packages/contributte/http)
+[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
+[![Downloads total](https://img.shields.io/packagist/dt/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
+[![Latest stable](https://img.shields.io/packagist/v/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
+[![Latest unstable](https://img.shields.io/packagist/vpre/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
 
 ## Discussion / Help
 
