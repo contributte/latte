@@ -19,14 +19,14 @@
 ## Install
 
 ```
-composer require contributte/di
+composer require contributte/latte
 ```
 
 ## Versions
 
 | State       | Version | Branch   | PHP      |
 |-------------|---------|----------|----------|
-| development | `^0.2`  | `master` | `>= 5.6` |
+| stable      | `^0.2`  | `master` | `>= 5.6` |
 
 ## Overview
 
