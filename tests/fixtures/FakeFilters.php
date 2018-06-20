@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tests\Fixtures;
 
@@ -8,9 +8,9 @@ final class FakeFilters implements FiltersProvider
 {
 
 	/**
-	 * @return array
+	 * @return callable[]
 	 */
-	public function getFilters()
+	public function getFilters(): array
 	{
 		return [
 			'say' => function ($hi) {

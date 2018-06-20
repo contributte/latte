@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Test: DI\FiltersExtension
@@ -15,9 +15,9 @@ use Tester\FileMock;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
-	$loader = new ContainerLoader(TEMP_DIR, TRUE);
-	$class = $loader->load(function (Compiler $compiler) {
+test(function (): void {
+	$loader = new ContainerLoader(TEMP_DIR, true);
+	$class = $loader->load(function (Compiler $compiler): void {
 		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
 		$compiler->addExtension('filters', new FiltersExtension());
 		$compiler->loadConfig(FileMock::create('
@@ -27,7 +27,7 @@ test(function () {
 	}, 1);
 
 	/** @var Container $container */
-	$container = new $class;
+	$container = new $class();
 
 	/** @var ILatteFactory $latteFactory */
 	$latteFactory = $container->getByType(ILatteFactory::class);

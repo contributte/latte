@@ -1,13 +1,10 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Latte\Formatters;
 
 use Contributte\Latte\Exception\Logical\InvalidArgumentException;
 use Nette\Utils\Html;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class NumberFormatter
 {
 
@@ -23,17 +20,17 @@ class NumberFormatter
 	/** @var string */
 	private $point = ',';
 
-	/** @var callable */
+	/** @var callable|null */
 	private $callback;
 
 	/** @var bool */
-	private $zeros = FALSE;
+	private $zeros = false;
 
 	/** @var bool */
-	private $strict = TRUE;
+	private $strict = true;
 
 	/** @var bool */
-	private $spaces = TRUE;
+	private $spaces = true;
 
 	/** @var string */
 	private $prefix;
@@ -44,11 +41,7 @@ class NumberFormatter
 	/** @var Html */
 	private $wrapper;
 
-	/**
-	 * @param string $suffix
-	 * @param string $prefix
-	 */
-	public function __construct($suffix = NULL, $prefix = NULL)
+	public function __construct(string $suffix = '', string $prefix = '')
 	{
 		$this->suffix = $suffix;
 		$this->prefix = $prefix;
@@ -56,112 +49,59 @@ class NumberFormatter
 		$this->wrapper = Html::el();
 	}
 
-	/**
-	 * SETTERS *****************************************************************
-	 */
-
-	/**
-	 * @param int $number
-	 * @return static
-	 */
-	public function setDecimals($number)
+	public function setDecimals(int $number): self
 	{
-		$this->decimals = intval($number);
-
+		$this->decimals = $number;
 		return $this;
 	}
 
-	/**
-	 * @param string $separator
-	 * @return static
-	 */
-	public function setPoint($separator)
+	public function setPoint(string $separator): self
 	{
 		$this->point = $separator;
-
 		return $this;
 	}
 
-	/**
-	 * @param string $separator
-	 * @return static
-	 */
-	public function setThousands($separator)
+	public function setThousands(string $separator): self
 	{
 		$this->thousands = $separator;
-
 		return $this;
 	}
 
-	/**
-	 * @param boolean $show
-	 * @return static
-	 */
-	public function setZeros($show = TRUE)
+	public function setZeros(bool $show = true): self
 	{
-		$this->zeros = (bool) $show;
-
+		$this->zeros = $show;
 		return $this;
 	}
 
-	/**
-	 * @param string $suffix
-	 * @return static
-	 */
-	public function setSuffix($suffix)
+	public function setSuffix(string $suffix): self
 	{
 		$this->suffix = $suffix;
-
 		return $this;
 	}
 
-	/**
-	 * @param string $prefix
-	 * @return static
-	 */
-	public function setPrefix($prefix)
+	public function setPrefix(string $prefix): self
 	{
 		$this->prefix = $prefix;
-
 		return $this;
 	}
 
-	/**
-	 * @param boolean $throw
-	 * @return static
-	 */
-	public function setStrict($throw = TRUE)
+	public function setStrict(bool $throw = true): self
 	{
-		$this->strict = (bool) $throw;
-
+		$this->strict = $throw;
 		return $this;
 	}
 
-	/**
-	 * @param boolean $display
-	 * @return static
-	 */
-	public function setSpaces($display = TRUE)
+	public function setSpaces(bool $display = true): self
 	{
-		$this->spaces = (bool) $display;
-
+		$this->spaces = $display;
 		return $this;
 	}
 
-	/**
-	 * @param callable $callback
-	 * @return static
-	 */
-	public function setCallback(callable $callback)
+	public function setCallback(callable $callback): self
 	{
 		$this->callback = $callback;
-
 		return $this;
 	}
-
-	/**
-	 * GETTERS *****************************************************************
-	 */
 
 	/**
 	 * @return mixed
@@ -171,39 +111,32 @@ class NumberFormatter
 		return $this->rawValue;
 	}
 
-	/**
-	 * @return Html
-	 */
-	public function prototype()
+	public function prototype(): Html
 	{
 		return $this->wrapper;
 	}
 
 	/**
-	 * FORMAT ******************************************************************
-	 */
-
-	/**
 	 * @param mixed $value
-	 * @param int $decimals
 	 * @return mixed
 	 */
-	public function format($value, $decimals = NULL)
+	public function format($value, ?int $decimals = null)
 	{
-		$value = trim($value);
-		$value = str_replace(',', '.', $value);
+		if (is_string($value)) {
+			$value = trim($value);
+			$value = str_replace(',', '.', $value);
+		}
 
 		if (!is_numeric($value)) {
 			if ($this->strict) {
 				throw new InvalidArgumentException('Value must be numeric');
-			} else {
-				return $value;
 			}
+			return $value;
 		}
 
 		$this->rawValue = $value;
 
-		if ($decimals == NULL) {
+		if ($decimals === null) {
 			$decimals = $this->decimals;
 		}
 
@@ -218,9 +151,9 @@ class NumberFormatter
 			$number = rtrim(rtrim($number, '0'), $this->point);
 		}
 
-		if ($this->callback) {
+		if ($this->callback !== null) {
 			return call_user_func_array($this->callback, [$this->prefix, $number, $this->suffix]);
-		} else if ($this->spaces) {
+		} elseif ($this->spaces) {
 			return trim(sprintf('%s %s %s', $this->prefix, $number, $this->suffix));
 		} else {
 			return trim(sprintf('%s%s%s', $this->prefix, $number, $this->suffix));
@@ -228,11 +161,9 @@ class NumberFormatter
 	}
 
 	/**
-	 * @param int|float $value
-	 * @param int $decimals
-	 * @return Html
+	 * @param mixed $value
 	 */
-	public function formatHtml($value, $decimals = NULL)
+	public function formatHtml($value, ?int $decimals = null): Html
 	{
 		$wrapper = clone $this->wrapper;
 		$wrapper->setHtml($this->format($value, $decimals));

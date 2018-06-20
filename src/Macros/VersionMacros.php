@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Latte\Macros;
 
@@ -11,12 +11,11 @@ use Latte\PhpWriter;
 class VersionMacros extends MacroSet
 {
 
-	/** @var array */
+	/** @var mixed[] */
 	private $config;
 
 	/**
-	 * @param Compiler $compiler
-	 * @param array $config
+	 * @param mixed[] $config
 	 */
 	public function __construct(Compiler $compiler, array $config)
 	{
@@ -25,11 +24,9 @@ class VersionMacros extends MacroSet
 	}
 
 	/**
-	 * @param Compiler $compiler
-	 * @param array $config
-	 * @return VersionMacros
+	 * @param mixed[] $config
 	 */
-	public static function install(Compiler $compiler, array $config)
+	public static function install(Compiler $compiler, array $config): self
 	{
 		$me = new self($compiler, $config);
 
@@ -40,12 +37,7 @@ class VersionMacros extends MacroSet
 		return $me;
 	}
 
-	/**
-	 * @param MacroNode $node
-	 * @param PhpWriter $writer
-	 * @return string
-	 */
-	public function macroRev(MacroNode $node, PhpWriter $writer)
+	public function macroRev(MacroNode $node, PhpWriter $writer): string
 	{
 		if (!isset($this->config['rev'])) {
 			throw new InvalidArgumentException('Config field "rev" is not filled');
@@ -54,12 +46,7 @@ class VersionMacros extends MacroSet
 		return $writer->write(sprintf('echo "%s";', $this->config['rev']));
 	}
 
-	/**
-	 * @param MacroNode $node
-	 * @param PhpWriter $writer
-	 * @return string
-	 */
-	public function macroBuild(MacroNode $node, PhpWriter $writer)
+	public function macroBuild(MacroNode $node, PhpWriter $writer): string
 	{
 		if (!isset($this->config['build'])) {
 			throw new InvalidArgumentException('Config field "build" is not filled');
@@ -68,12 +55,7 @@ class VersionMacros extends MacroSet
 		return $writer->write(sprintf('echo "%s";', $this->config['build']));
 	}
 
-	/**
-	 * @param MacroNode $node
-	 * @param PhpWriter $writer
-	 * @return string
-	 */
-	public function macroV(MacroNode $node, PhpWriter $writer)
+	public function macroV(MacroNode $node, PhpWriter $writer): string
 	{
 		if (!isset($this->config['v'])) {
 			throw new InvalidArgumentException('Config field "v" is not filled');

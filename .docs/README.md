@@ -64,10 +64,10 @@ use Contributte\Latte\Filters\FiltersProvider;
 final class MyFilters implements FiltersProvider
 {
 
-	/**
-	 * @return array
-	 */
-	public function getFilters()
+    /**
+   	 * @return callable[]
+     */
+	public function getFilters(): array
 	{
 		return [
 			'say' => function ($hi) {
@@ -117,21 +117,21 @@ This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
 
 ### `NumberFormatter`
 
-Number formatter is simple wrapping class over `number_format` method. 
+Number formatter is simple wrapping class over `number_format` method.
 
 ```yaml
 services:
-    formatter.money: 
+    formatter.money:
         # with defined prefix
-        class: Contributte\Latte\Formatters\NumberFormatter('Kč') 
-        
-    formatter.weight: 
+        class: Contributte\Latte\Formatters\NumberFormatter('Kč')
+
+    formatter.weight:
         # with defined prefix and suffix
         class: Contributte\Latte\Formatters\NumberFormatter('kg', '~')
         setup:
-            - setThousands(NULL)
+            - setThousands('')
             - setDecimals(0)
-    
+
     nette.latteFactory:
         setup:
             # used as latte filter

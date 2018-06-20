@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * Test: Formatters\NumberFormatter
@@ -10,31 +10,31 @@ use Tester\Assert;
 
 require __DIR__ . '/../../bootstrap.php';
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	Assert::same('10', $formatter->format(10));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	Assert::same('10,1', $formatter->format(10.1));
 	Assert::same('10 000', $formatter->format(10000));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	Assert::same('10,1', $formatter->format(10.10));
 	Assert::same('10,1', $formatter->format(10.10000));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	Assert::same('10,1', $formatter->format(' 10.10 '));
 	Assert::same('10,1', $formatter->format('10.10 '));
 	Assert::same('10,1', $formatter->format(' 10.10'));
 });
 
-test(function () {
+test(function (): void {
 	$suffix = 'cm';
 	$formatter = new NumberFormatter($suffix);
 	Assert::same('10,1 cm', $formatter->format('10.1'));
@@ -48,41 +48,41 @@ test(function () {
 	Assert::same('10,1  cm', $formatter->format(' 10.1 '));
 });
 
-test(function () {
+test(function (): void {
 	$prefix = '~';
-	$formatter = new NumberFormatter(NULL, $prefix);
+	$formatter = new NumberFormatter('', $prefix);
 	Assert::same('~ 10,1', $formatter->format('10.1'));
 
 	$prefix = ' ~';
-	$formatter = new NumberFormatter(NULL, $prefix);
+	$formatter = new NumberFormatter('', $prefix);
 	Assert::same('~ 10,1', $formatter->format('10.1'));
 });
 
-test(function () {
+test(function (): void {
 	$prefix = '~';
 	$suffix = 'cm';
 	$formatter = new NumberFormatter($suffix, $prefix);
 	Assert::same('~ 10,1 cm', $formatter->format('10.1'));
 });
 
-test(function () {
+test(function (): void {
 	$prefix1 = '~1';
 	$prefix2 = '~2';
 	$suffix1 = 'cm1';
 	$suffix2 = 'cm2';
-	$formatter = new NumberFormatter($suffix1, $prefix2);
+	$formatter = new NumberFormatter($suffix1, $prefix1);
 	$formatter->setSuffix($suffix2);
 	$formatter->setPrefix($prefix2);
 	Assert::same('~2 10,1 cm2', $formatter->format('10.1'));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	$formatter->setPoint('.');
 	Assert::same('10.1', $formatter->format('10.1'));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	$formatter->setDecimals(2);
 	Assert::same('10,12', $formatter->format('10.123'));
@@ -96,61 +96,61 @@ test(function () {
 	Assert::same('12 534,23', $formatter->format('12534.225', 2));
 });
 
-test(function () {
+test(function (): void {
 	$prefix = '~';
-	$formatter = new NumberFormatter(NULL, $prefix);
-	$formatter->setSpaces(FALSE);
+	$formatter = new NumberFormatter('', $prefix);
+	$formatter->setSpaces(false);
 	Assert::same('~10,1', $formatter->format('10.1'));
 
 	$postfix = 'cm';
-	$formatter = new NumberFormatter($postfix, NULL);
-	$formatter->setSpaces(FALSE);
+	$formatter = new NumberFormatter($postfix, '');
+	$formatter->setSpaces(false);
 	Assert::same('10,1cm', $formatter->format('10.1'));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 	$formatter->setThousands('-');
 	Assert::same('10-000', $formatter->format('10000'));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
-	$formatter->setZeros(FALSE);
+	$formatter->setZeros(false);
 	Assert::same('10,1', $formatter->format('10.100'));
 
-	$formatter->setZeros(TRUE);
+	$formatter->setZeros(true);
 	Assert::same('10,10', $formatter->format('10.100'));
 
 	$formatter->setDecimals(3);
-	$formatter->setZeros(TRUE);
+	$formatter->setZeros(true);
 	Assert::same('10,100', $formatter->format('10.100'));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
-	$formatter->setStrict(TRUE);
-	Assert::throws(function () use ($formatter) {
+	$formatter->setStrict(true);
+	Assert::throws(function () use ($formatter): void {
 		$formatter->format('word..');
 	}, InvalidArgumentException::class);
 
-	$formatter->setStrict(FALSE);
+	$formatter->setStrict(false);
 	Assert::same('word', $formatter->format('word'));
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
-	$formatter->setCallback(function ($prefix, $value, $suffix) {
+	$formatter->setCallback(function ($prefix, $value, $suffix): array {
 		return [$prefix, $value, $suffix];
 	});
 
 	$res = $formatter->format('10.1');
-	Assert::same(NULL, $res[0]);
+	Assert::same('', $res[0]);
 	Assert::same('10,1', $res[1]);
-	Assert::same(NULL, $res[2]);
+	Assert::same('', $res[2]);
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 
 	$p = $formatter->prototype();
@@ -160,7 +160,7 @@ test(function () {
 	Assert::same('div', $p->getName());
 });
 
-test(function () {
+test(function (): void {
 	$formatter = new NumberFormatter();
 
 	$p = $formatter->prototype();

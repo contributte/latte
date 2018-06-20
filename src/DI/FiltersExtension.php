@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Latte\DI;
 
@@ -7,23 +7,17 @@ use Contributte\Latte\Filters\FiltersProvider;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- * @author Tomas Votruba <info@tomasvotruba.cz>
- */
 class FiltersExtension extends CompilerExtension
 {
 
 	/**
 	 * Decorate services
-	 *
-	 * @return void
 	 */
-	public function beforeCompile()
+	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
 
-		if ($builder->getByType(ILatteFactory::class) === NULL) {
+		if ($builder->getByType(ILatteFactory::class) === null) {
 			throw new LatteDefinitionNotFoundException();
 		}
 
