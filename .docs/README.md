@@ -4,7 +4,6 @@
 
 - [VersionExtension - revision macros for assets](#versions-extension)
 - [FiltersExtension - install filters easily](#filers-extension)
-- [TemplateFactory - events](#templatefactory)
 - [RuntimeFilters - collection of prepared filters](#runtimefilters)
 - [Formatters - collection of prepared formatters](#formatters)
 
@@ -88,21 +87,6 @@ services:
 ```
 
 That's all.
-
-## TemplateFactory
-
-Our implementation adds `$onCreate` nette-based event.
-
-So you don't need to extends and override stuff, but do it via nette-based `$onCreate` event.
-
-```php
-$templateFactory->onCreate[] = function (Template $template, Control $control = NULL) {
-    // do magic..
-};
-
-```
-
-Easy, right? :gift:
 
 ## RuntimeFilters
 
