@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * @Test Macros\VersionMacros
@@ -12,11 +12,11 @@ use Tester\FileMock;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
+test(function (): void {
 	$latte = new Engine();
 	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
-	$latte->onCompile[] = function (Engine $engine) {
+	$latte->onCompile[] = function (Engine $engine): void {
 		VersionMacros::install($engine->getCompiler(), [
 			'rev' => 1,
 			'build' => 2,
@@ -30,10 +30,10 @@ test(function () {
 	Assert::equal('123', $latte->renderToString('{rev}{build}{v}'));
 });
 
-test(function () {
+test(function (): void {
 	$latte = new Engine();
 	$latte->setTempDirectory(TEMP_DIR);
-	$latte->onCompile[] = function (Engine $engine) {
+	$latte->onCompile[] = function (Engine $engine): void {
 		VersionMacros::install($engine->getCompiler(), [
 			'rev' => 1,
 			'build' => 2,

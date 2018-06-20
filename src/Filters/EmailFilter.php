@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Latte\Filters;
 
@@ -8,19 +8,14 @@ class EmailFilter
 {
 
 	// Encoding types
-	const ENCODE_JAVASCRIPT = 'javascript';
-	const ENCODE_JAVASCRIPT_CHARCODE = 'javascript_charcode';
-	const ENCODE_HEX = 'hex';
-	const ENCODE_DRUPAL = 'drupal';
-	const ENCODE_TEXY = 'texy';
+	public const
+		ENCODE_JAVASCRIPT = 'javascript',
+		ENCODE_JAVASCRIPT_CHARCODE = 'javascript_charcode',
+		ENCODE_HEX = 'hex',
+		ENCODE_DRUPAL = 'drupal',
+		ENCODE_TEXY = 'texy';
 
-	/**
-	 * @param string $address
-	 * @param string $encode [optional]
-	 * @param string $text [optional]
-	 * @return Html
-	 */
-	public static function filter($address, $encode = NULL, $text = NULL)
+	public static function filter(string $address, ?string $encode = null, ?string $text = null): Html
 	{
 		return Html::el()->setHtml(self::protect($address, $encode, $text));
 	}
@@ -28,19 +23,13 @@ class EmailFilter
 	/**
 	 * Smarty {mailto} function plugin
 	 *
-	 * @param string $address
-	 * @param string $encode [optional]
-	 * @param string $text [optional]
-	 *
 	 * @link http://www.smarty.net/manual/en/language.function.mailto.php {mailto}
-	 *
-	 * @return string
 	 */
-	public static function protect($address, $encode = NULL, $text = NULL)
+	public static function protect(string $address, ?string $encode = null, ?string $text = null): string
 	{
-		$_text = $text == NULL ? $address : $text;
-		$_extra = NULL;
-		if ($encode == 'javascript') {
+		$_text = $text === null ? $address : $text;
+		$_extra = null;
+		if ($encode === 'javascript') {
 			$string = 'document.write(\'<a href="mailto:' . $address . '" ' . $_extra . '>' . $_text . '</a>\');';
 			$js_encode = '';
 			for ($x = 0, $_length = strlen($string); $x < $_length; $x++) {
@@ -48,8 +37,9 @@ class EmailFilter
 			}
 
 			return '<script type="text/javascript">eval(unescape(\'' . $js_encode . '\'))</script>';
-		} elseif ($encode == 'javascript_charcode') {
+		} elseif ($encode === 'javascript_charcode') {
 			$string = '<a href="mailto:' . $address . '" ' . $_extra . '>' . $_text . '</a>';
+			$ord = [];
 			for ($x = 0, $y = strlen($string); $x < $y; $x++) {
 				$ord[] = ord($string[$x]);
 			}
@@ -61,12 +51,12 @@ class EmailFilter
 				. "</script>\n";
 
 			return $_ret;
-		} elseif ($encode == 'hex') {
+		} elseif ($encode === 'hex') {
 			preg_match('!^(.*)(\?.*)$!', $address, $match);
 			if (!empty($match[2])) {
 				trigger_error('mailto: hex encoding does not work with extra attributes. Try javascript.', E_USER_WARNING);
 
-				return;
+				return '';
 			}
 			$address_encode = '';
 			for ($x = 0, $_length = strlen($address); $x < $_length; $x++) {
@@ -83,14 +73,14 @@ class EmailFilter
 			$mailto = '&#109;&#97;&#105;&#108;&#116;&#111;&#58;';
 
 			return '<a href="' . $mailto . $address_encode . '" ' . $_extra . '>' . $text_encode . '</a>';
-		} else if ($encode == 'drupal') {
+		} elseif ($encode === 'drupal') {
 			$address = str_replace('@', '[at]', $address);
-			$_text = $text == NULL ? $address : $_text;
+			$_text = $text === null ? $address : $_text;
 
 			return '<a href="mailto:' . $address . '" ' . $_extra . '>' . $_text . '</a>';
-		} else if ($encode == 'texy') {
+		} elseif ($encode === 'texy') {
 			$address = str_replace('@', '<!-- ANTISPAM -->&#64;<!-- /ANTISPAM -->', $address);
-			$_text = $text == NULL ? $address : $_text;
+			$_text = $text === null ? $address : $_text;
 
 			return '<a href="mailto:' . $address . '" ' . $_extra . '>' . $_text . '</a>';
 		} else {

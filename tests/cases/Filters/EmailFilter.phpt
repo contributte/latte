@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 /**
  * @Test Filters\EmailFilter
@@ -9,7 +9,7 @@ use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
+test(function (): void {
 	$email = EmailFilter::filter('latte@contributte.org');
 	Assert::equal('<a href="mailto:latte@contributte.org" >latte@contributte.org</a>', (string) $email);
 

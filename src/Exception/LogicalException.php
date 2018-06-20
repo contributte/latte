@@ -1,8 +1,10 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Latte\Exception;
 
-abstract class LogicalException extends \LogicException
+use LogicException;
+
+abstract class LogicalException extends LogicException
 {
 
 }

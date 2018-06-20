@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Contributte\Latte\DI;
 
@@ -8,38 +8,33 @@ use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
 use Nette\PhpGenerator\PhpLiteral;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
 class VersionExtension extends CompilerExtension
 {
 
-	/** @var array */
+	/** @var mixed[] */
 	private $defaults = [
-		'debug' => FALSE,
-		'rev' => NULL,
-		'build' => NULL,
-		'v' => NULL,
+		'debug' => false,
+		'rev' => null,
+		'build' => null,
+		'v' => null,
 	];
 
 	/**
 	 * Decorate services
-	 *
-	 * @return void
 	 */
-	public function beforeCompile()
+	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$config = $this->validateConfig($this->defaults);
 
-		if ($builder->getByType(ILatteFactory::class) === NULL) {
+		if ($builder->getByType(ILatteFactory::class) === null) {
 			throw new LatteDefinitionNotFoundException();
 		}
 
-		if ($config['debug'] === TRUE) {
-			$config['rev'] = md5(microtime() . mt_rand(0, 100));
-			$config['build'] = md5(microtime() . mt_rand(0, 100));
-			$config['v'] = md5(microtime() . mt_rand(0, 100));
+		if ($config['debug'] === true) {
+			$config['rev'] = md5(microtime() . random_int(0, 100));
+			$config['build'] = md5(microtime() . random_int(0, 100));
+			$config['v'] = md5(microtime() . random_int(0, 100));
 		}
 
 		$builder->getDefinitionByType(ILatteFactory::class)
