@@ -27,11 +27,11 @@ version:
     v: 2.12
 ```
 
-In debug mode you can use `debug` property to generated rev/build/v for each container compilation.
+In debug mode you can use `generated` property to generate rev/build/v for each container compilation.
 
 ```yaml
 version:
-    debug: %debugMode%
+    generated: %debugMode%
     # rev: auto-generated
     # build: auto-generated
     # v: auto-generated
