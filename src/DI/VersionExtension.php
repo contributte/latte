@@ -13,7 +13,7 @@ class VersionExtension extends CompilerExtension
 
 	/** @var mixed[] */
 	private $defaults = [
-		'debug' => false,
+		'generated' => false,
 		'rev' => null,
 		'build' => null,
 		'v' => null,
@@ -31,7 +31,7 @@ class VersionExtension extends CompilerExtension
 			throw new LatteDefinitionNotFoundException();
 		}
 
-		if ($config['debug'] === true) {
+		if ($config['generated'] === true) {
 			$config['rev'] = md5(microtime() . random_int(0, 100));
 			$config['build'] = md5(microtime() . random_int(0, 100));
 			$config['v'] = md5(microtime() . random_int(0, 100));

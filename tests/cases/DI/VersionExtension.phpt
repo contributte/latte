@@ -44,7 +44,7 @@ test(function (): void {
 		$compiler->addExtension('version', new VersionExtension());
 		$compiler->loadConfig(FileMock::create('
 		version:
-			debug: true
+			generated: true
 			rev: 1
 			build: 2
 			v: 3
