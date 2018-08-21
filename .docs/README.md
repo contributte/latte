@@ -27,7 +27,7 @@ version:
     v: 2.12
 ```
 
-Or you can use property `generated`. It generates rev/build/v for each container compilation, so each time in debug mode and once in production mode. Very useful.
+Alternatively, you can use the `generated` property. It generates rev/build/v for each container compilation, i.e. each time in the debug mode and once in the production mode. Very useful.
 
 ```yaml
 version:
@@ -47,7 +47,7 @@ version:
 
 Install filters by single extension and simple `FiltersProvider` implementation.
 
-### Install
+### Installation
 
 ```yaml
 extensions:
@@ -56,7 +56,7 @@ extensions:
 
 ### Usage
 
-First of all, you have to define your own filters provider. It's key => value, I mean name => callback array.
+First of all, you have to define your own filters provider. It's `key => value`, that means `name => callback` array.
 
 ```php
 use Contributte\Latte\Filters\FiltersProvider;
@@ -79,7 +79,7 @@ final class MyFilters implements FiltersProvider
 }
 ```
 
-After that, add you filters provider as service to your config (neon) file.
+After that, add you filters provider as a service to your config (neon) file.
 
 ```yaml
 services:
@@ -117,7 +117,7 @@ This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
 
 ### `NumberFormatter`
 
-Number formatter is simple wrapping class over `number_format` method.
+Number formatter is simple wrapper class over the `number_format` function.
 
 ```yaml
 services:
