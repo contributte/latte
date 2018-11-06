@@ -3,7 +3,7 @@
 ## Content
 
 - [VersionExtension - revision macros for assets](#versions-extension)
-- [FiltersExtension - install filters easily](#filers-extension)
+- [FiltersExtension - install filters easily](#filters-extension)
 - [RuntimeFilters - collection of prepared filters](#runtimefilters)
 - [Formatters - collection of prepared formatters](#formatters)
 
