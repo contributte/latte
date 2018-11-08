@@ -27,7 +27,7 @@ class EmailFilter
 	 */
 	public static function protect(string $address, ?string $encode = null, ?string $text = null): string
 	{
-		$_text = $text === null ? $address : $text;
+		$_text = $text ?? $address;
 		$_extra = null;
 		if ($encode === 'javascript') {
 			$string = 'document.write(\'<a href="mailto:' . $address . '" ' . $_extra . '>' . $_text . '</a>\');';
@@ -60,7 +60,7 @@ class EmailFilter
 			}
 			$address_encode = '';
 			for ($x = 0, $_length = strlen($address); $x < $_length; $x++) {
-				if (preg_match('!\w!u', $address[$x])) {
+				if (preg_match('!\w!u', $address[$x]) === 1) {
 					$address_encode .= '%' . bin2hex($address[$x]);
 				} else {
 					$address_encode .= $address[$x];

@@ -18,7 +18,7 @@ class FilectimeFilter
 			throw new FileNotFoundException(sprintf('File "%s" not found', $file));
 		}
 
-		return date($format, filectime($file));
+		return date($format, (int) filectime($file));
 	}
 
 }

@@ -135,6 +135,7 @@ class NumberFormatter
 		}
 
 		$this->rawValue = $value;
+		$value = (float) $value;
 
 		if ($decimals === null) {
 			$decimals = $this->decimals;
@@ -145,7 +146,7 @@ class NumberFormatter
 			$decimals = 0;
 		}
 
-		$number = number_format((float) $value, $decimals, $this->point, $this->thousands);
+		$number = number_format($value, $decimals, $this->point, $this->thousands);
 
 		if ($decimals > 0 && !$this->zeros) {
 			$number = rtrim(rtrim($number, '0'), $this->point);
