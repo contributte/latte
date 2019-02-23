@@ -113,6 +113,20 @@ This is my email: {="my@email.cz"|email}.
 This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
 ```
 
+### Gravatar
+
+Create link to [gravatar image](https://cs.gravatar.com/site/implement/images/)
+
+```html
+<img src="{lorem@ipsum.com|gravatar}"/>
+<img src="https://www.gravatar.com/avatar/067398c3f23785981cd8672e21643405.jpg?default=retro&size=80"/>
+```
+
+```html
+<img src="{lorem@ipsum.com|gravatar:[size=>48, style=>robohash, format=>png]}"/>
+<img src="https://www.gravatar.com/avatar/067398c3f23785981cd8672e21643405.png?default=robohash&size=48"/>
+```
+
 ## Formatters
 
 ### `NumberFormatter`
