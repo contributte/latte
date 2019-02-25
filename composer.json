@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">= 7.1",
-    "latte/latte": "~2.4.4"
+    "latte/latte": "~2.4.4 || ~2.5.1"
   },
   "require-dev": {
     "ninjify/qa": "^0.8.0",
