@@ -38,6 +38,7 @@ class VersionExtension extends CompilerExtension
 		}
 
 		$builder->getDefinitionByType(ILatteFactory::class)
+			->getResultDefinition()
 			->addSetup('?->onCompile[] = function ($engine) { ?::install($engine->getCompiler(), ?); }', [
 				'@self',
 				new PhpLiteral(VersionMacros::class),
