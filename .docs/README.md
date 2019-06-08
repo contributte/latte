@@ -1,11 +1,18 @@
-# Latte
+# Contributte Latte
 
 ## Content
 
+- [Setup](#setup)
 - [VersionExtension - revision macros for assets](#versions-extension)
 - [FiltersExtension - install filters easily](#filters-extension)
 - [RuntimeFilters - collection of prepared filters](#runtimefilters)
 - [Formatters - collection of prepared formatters](#formatters)
+
+## Setup
+
+```bash
+composer require contributte/latte
+```
 
 ## Version(s) Extension
 

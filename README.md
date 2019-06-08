@@ -1,8 +1,6 @@
-# Contributte > Latte
+# Contributte Latte
 
-:sparkles: Extra contribution to [`nette/latte`](https://github.com/nette/latte).
-
------
+Extra contribution to [`nette/latte`](https://github.com/nette/latte).
 
 [![Build Status](https://img.shields.io/travis/contributte/latte.svg?style=flat-square)](https://travis-ci.org/contributte/latte)
 [![Code coverage](https://img.shields.io/coveralls/contributte/latte.svg?style=flat-square)](https://coveralls.io/r/contributte/latte)
@@ -16,11 +14,13 @@
 
 [![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
 
-## Install
+## Documentation
 
-```
-composer require contributte/latte
-```
+- [Setup](.docs/README.md#setup)
+- [VersionExtension - revision macros for assets](.docs/README.md#versions-extension)
+- [FiltersExtension - install filters easily](.docs/README.md#filters-extension)
+- [RuntimeFilters - collection of prepared filters](.docs/README.md#runtimefilters)
+- [Formatters - collection of prepared formatters](.docs/README.md#formatters)
 
 ## Versions
 
@@ -29,14 +29,6 @@ composer require contributte/latte
 | dev         | `^0.4`  | `master` | `>= 7.1` |
 | stable      | `^0.3`  | `master` | `>= 7.1` |
 | stable      | `^0.2`  | `master` | `>= 5.6` |
-
-## Overview
-
-
-- [VersionExtension - revision macros for assets](https://github.com/contributte/latte/blob/master/.docs/README.md#versions-extension)
-- [FiltersExtension - install filters easily](https://github.com/contributte/latte/blob/master/.docs/README.md#filers-extension)
-- [RuntimeFilters - collection of prepared filters](https://github.com/contributte/latte/blob/master/.docs/README.md#runtimefilters)
-- [Formatters - collection of prepared formatters](https://github.com/contributte/latte/blob/master/.docs/README.md#formatters)
 
 ## Maintainers
 
@@ -60,7 +52,5 @@ composer require contributte/latte
     </tr>
   </tbody>
 </table>
-
----
 
 Thank you for testing, reporting and contributing.
