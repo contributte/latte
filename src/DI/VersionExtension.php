@@ -6,42 +6,52 @@ use Contributte\Latte\Exception\Runtime\LatteDefinitionNotFoundException;
 use Contributte\Latte\Macros\VersionMacros;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
+use Nette\DI\Definitions\FactoryDefinition;
 use Nette\PhpGenerator\PhpLiteral;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
+use stdClass;
 
+/**
+ * @property-read stdClass $config
+ */
 class VersionExtension extends CompilerExtension
 {
 
-	/** @var mixed[] */
-	private $defaults = [
-		'generated' => false,
-		'rev' => null,
-		'build' => null,
-		'v' => null,
-	];
+	public function getConfigSchema(): Schema
+	{
+		return Expect::structure([
+			'generated' => Expect::bool(false),
+			'rev' => Expect::anyOf(Expect::int(), Expect::string()),
+			'build' => Expect::anyOf(Expect::int(), Expect::string()),
+			'v' => Expect::anyOf(Expect::int(), Expect::string()),
+		]);
+	}
 
-	/**
-	 * Decorate services
-	 */
 	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
-		$config = $this->validateConfig($this->defaults);
+		$config = $this->config;
 
 		if ($builder->getByType(ILatteFactory::class) === null) {
 			throw new LatteDefinitionNotFoundException();
 		}
 
-		if ($config['generated'] === true) {
-			$config['rev'] = md5(microtime() . random_int(0, 100));
-			$config['build'] = md5(microtime() . random_int(0, 100));
-			$config['v'] = md5(microtime() . random_int(0, 100));
+		$factoryDefinition = $builder->getDefinitionByType(ILatteFactory::class);
+		assert($factoryDefinition instanceof FactoryDefinition);
+
+		if ($config->generated) {
+			$config->rev = md5(microtime() . random_int(0, 100));
+			$config->build = md5(microtime() . random_int(0, 100));
+			$config->v = md5(microtime() . random_int(0, 100));
 		}
 
-		$builder->getDefinitionByType(ILatteFactory::class)
+		$factoryDefinition
+			->getResultDefinition()
 			->addSetup('?->onCompile[] = function ($engine) { ?::install($engine->getCompiler(), ?); }', [
 				'@self',
 				new PhpLiteral(VersionMacros::class),
-				$config,
+				(array) $config,
 			]);
 	}
 

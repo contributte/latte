@@ -6,13 +6,11 @@ use Contributte\Latte\Exception\Runtime\LatteDefinitionNotFoundException;
 use Contributte\Latte\Filters\FiltersProvider;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
+use Nette\DI\Definitions\FactoryDefinition;
 
 class FiltersExtension extends CompilerExtension
 {
 
-	/**
-	 * Decorate services
-	 */
 	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
@@ -22,10 +20,11 @@ class FiltersExtension extends CompilerExtension
 		}
 
 		$latte = $builder->getDefinitionByType(ILatteFactory::class);
+		assert($latte instanceof FactoryDefinition);
 		$filters = $builder->findByType(FiltersProvider::class);
 
 		foreach ($filters as $definition) {
-			$latte->addSetup(
+			$latte->getResultDefinition()->addSetup(
 				'foreach (?->getFilters() as $name => $callback) {
 					?->addFilter($name, $callback);
 				}',
