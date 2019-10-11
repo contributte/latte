@@ -5,6 +5,7 @@
  */
 
 use Contributte\Latte\Filters\EmailFilter;
+use Latte\Runtime\Html;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -33,4 +34,27 @@ test(function (): void {
 
 	$email = EmailFilter::filter('latte@contributte.org', EmailFilter::ENCODE_DRUPAL, 'my@email.cz');
 	Assert::equal('<a href="mailto:latte[at]contributte.org" >my@email.cz</a>', (string) $email);
+});
+
+$template = '<a href="mailto:%s" >%s</a>';
+
+test(function (): void {
+	$output = EmailFilter::filter('my@email.com', EmailFilter::ENCODE_DRUPAL);
+	Assert::type(Html::class, $output);
+});
+
+test(function () use ($template): void {
+	$email = 'my@email.com';
+	$output = EmailFilter::filter($email, EmailFilter::ENCODE_DRUPAL);
+
+	Assert::notEqual($email, $output);
+	Assert::equal(sprintf($template, 'my[at]email.com', 'my[at]email.com'), (string) $output);
+});
+
+test(function () use ($template): void {
+	$email = 'my@email.com';
+	$output = EmailFilter::filter($email, EmailFilter::ENCODE_DRUPAL, 'MY EMAIL');
+
+	Assert::notEqual($email, $output);
+	Assert::equal(sprintf($template, 'my[at]email.com', 'MY EMAIL'), (string) $output);
 });

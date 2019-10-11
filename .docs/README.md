@@ -109,15 +109,36 @@ That's all.
 
 ### `Email`
 
-```html
-{var $email => 'my@email.cz'}
+```latte
+{var $email = "my@email.net"}
 
-This is my email: {$email|email}.
-This is my email: {="my@email.cz"|email}.
+{$email|email:"javascript"}
+{$email|email:"javascript_charcode"}
+{$email|email:"hex"|noescape}
+{$email|email:"javascript":"link to my email here"}
+{$email|email:"drupal"}
+{$email|email:"texy"}
 ```
 
 ```html
 This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
+```
+
+#### Supported encoding methods
+
+* javascript
+* javascript_charcode
+* hex
+* drupal
+* texy
+
+#### Nette DI setup
+
+```yaml
+services:
+    nette.latteFactory:
+        setup:
+            - addFilter('email', ['Contributte\Latte\Filters\EmailFilter', 'filter'])
 ```
 
 ### Gravatar
