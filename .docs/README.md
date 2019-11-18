@@ -1,5 +1,7 @@
 # Contributte Latte
 
+Extra contribution to [`nette/latte`](https://github.com/nette/latte).
+
 ## Content
 
 - [Setup](#setup)
