@@ -131,6 +131,7 @@ class NumberFormatter
 			if ($this->strict) {
 				throw new InvalidArgumentException('Value must be numeric');
 			}
+
 			return $value;
 		}
 

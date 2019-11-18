@@ -64,6 +64,7 @@ class EmailFilter
 			if (!empty($match[2])) {
 				throw new InvalidArgumentException('mailto: hex encoding does not work with extra attributes. Try javascript.');
 			}
+
 			$address_encode = '';
 			for ($x = 0, $_length = strlen($address); $x < $_length; $x++) {
 				if (preg_match('!\w!u', $address[$x])) {
@@ -72,6 +73,7 @@ class EmailFilter
 					$address_encode .= $address[$x];
 				}
 			}
+
 			$text_encode = '';
 			for ($x = 0, $_length = strlen($_text); $x < $_length; $x++) {
 				$text_encode .= '&#x' . bin2hex($_text[$x]) . ';';
