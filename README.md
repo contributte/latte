@@ -1,12 +1,14 @@
 ![](.docs/download4.png)
 
-[![Build Status](https://img.shields.io/travis/contributte/latte.svg?style=flat-square)](https://travis-ci.org/contributte/latte)
-[![Code coverage](https://img.shields.io/coveralls/contributte/latte.svg?style=flat-square)](https://coveralls.io/r/contributte/latte)
-[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
-[![Latest stable](https://img.shields.io/packagist/v/contributte/latte.svg?style=flat-square)](https://packagist.org/packages/contributte/latte)
-[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
-
+<p align=center>
+  <a href="https://travis-ci.org/contributte/latte"><img src="https://img.shields.io/travis/contributte/latte.svg?style=flat-square"></a>
+  <a href="https://coveralls.io/r/contributte/latte"><img src="https://img.shields.io/coveralls/contributte/latte.svg?style=flat-square"></a>
+  <a href="https://packagist.org/packages/contributte/latte"><img src="https://img.shields.io/packagist/dm/contributte/latte.svg?style=flat-square"></a>
+  <a href="https://packagist.org/packages/contributte/latte"><img src="https://img.shields.io/packagist/v/contributte/latte.svg?style=flat-square"></a>
+  <a href="http://bit.ly/ctteg"><img src="https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square"></a>
 <p>
+
+<p align=center>
 Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
 </p>
 
