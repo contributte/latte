@@ -1,4 +1,4 @@
-![](.docs/download2.png)
+![](.docs/download4.png)
 
 [![Build Status](https://img.shields.io/travis/contributte/latte.svg?style=flat-square)](https://travis-ci.org/contributte/latte)
 [![Code coverage](https://img.shields.io/coveralls/contributte/latte.svg?style=flat-square)](https://coveralls.io/r/contributte/latte)
