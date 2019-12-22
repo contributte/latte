@@ -111,7 +111,7 @@ That's all.
 
 ### `Email`
 
-```latte
+```smarty
 {var $email = "my@email.net"}
 
 {$email|email:"javascript"}
