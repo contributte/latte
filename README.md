@@ -1,4 +1,4 @@
-![](.docs/download4.png)
+![](https://heatbadger.now.sh/github/contributte/datagrid/)
 
 <p align=center>
   <a href="https://travis-ci.org/contributte/latte"><img src="https://img.shields.io/travis/contributte/latte.svg?style=flat-square"></a>
