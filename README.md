@@ -33,7 +33,7 @@ For details on how to use this package, check out our [documentation](.docs).
 
 ## Development
 
-See [how to contributte](https://contributte.org) to this package. This package is currently maintaining by these authors.
+See [how to contributte](https://contributte.org) to this package. This package is currently maintained by these authors.
 
 <a href="https://github.com/f3l1x">
     <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
