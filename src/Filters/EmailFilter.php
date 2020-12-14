@@ -49,14 +49,12 @@ class EmailFilter
 				$ord[] = ord($string[$x]);
 			}
 
-			$_ret = "<script type=\"text/javascript\" language=\"javascript\">\n"
+			return "<script type=\"text/javascript\" language=\"javascript\">\n"
 				. '{document.write(String.fromCharCode('
 				. implode(',', $ord)
 				. '))'
 				. "}\n"
 				. "</script>\n";
-
-			return $_ret;
 		}
 
 		if ($encode === 'hex') {
