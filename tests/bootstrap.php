@@ -7,4 +7,7 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
 	exit(1);
 }
 
-Environment::setup(__DIR__);
+// Configure environment
+Environment::setupTester();
+Environment::setupTimezone();
+Environment::setupVariables(__DIR__);
