@@ -46,7 +46,7 @@ version:
     # v: auto-generated
 ```
 
-```html
+```latte
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={rev}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={build}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
@@ -101,7 +101,7 @@ That's all.
 
 ### `Filectime`
 
-```html
+```latte
 <link rel="stylesheet" href="{=$basePath/assets/theme.css|filectime}">
 ```
 
@@ -111,7 +111,7 @@ That's all.
 
 ### `Email`
 
-```smarty
+```latte
 {var $email = "my@email.net"}
 
 {$email|email:"javascript"}
@@ -147,7 +147,7 @@ services:
 
 Create link to [gravatar image](https://cs.gravatar.com/site/implement/images/)
 
-```html
+```latte
 <img src="{lorem@ipsum.com|gravatar}"/>
 <img src="https://www.gravatar.com/avatar/067398c3f23785981cd8672e21643405.jpg?default=retro&size=80"/>
 ```
