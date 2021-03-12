@@ -22,31 +22,31 @@ This extension adds 3 macros: `{rev}`, `{build}`, `{v}`.
 
 ### Install
 
-```yaml
+```neon
 extensions:
-    version: Contributte\Latte\DI\VersionExtension
+	version: Contributte\Latte\DI\VersionExtension
 ```
 
 ### Configuration
 
-```yaml
+```neon
 version:
-    rev: e3203c85a9b84ee866132f371ba0b238b6a5b245
-    build: 2016
-    v: 2.12
+	rev: e3203c85a9b84ee866132f371ba0b238b6a5b245
+	build: 2016
+	v: 2.12
 ```
 
 Alternatively, you can use the `generated` property. It generates rev/build/v for each container compilation, i.e. each time in the debug mode and once in the production mode. Very useful.
 
-```yaml
+```neon
 version:
-    generated: %debugMode%
-    # rev: auto-generated
-    # build: auto-generated
-    # v: auto-generated
+	generated: %debugMode%
+	# rev: auto-generated
+	# build: auto-generated
+	# v: auto-generated
 ```
 
-```html
+```latte
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={rev}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={build}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
@@ -58,9 +58,9 @@ Install filters by single extension and simple `FiltersProvider` implementation.
 
 ### Installation
 
-```yaml
+```neon
 extensions:
-    filters: Contributte\Latte\DI\FiltersExtension
+	filters: Contributte\Latte\DI\FiltersExtension
 ```
 
 ### Usage
@@ -73,9 +73,9 @@ use Contributte\Latte\Filters\FiltersProvider;
 final class MyFilters implements FiltersProvider
 {
 
-    /**
+	/**
    	 * @return callable[]
-     */
+	 */
 	public function getFilters(): array
 	{
 		return [
@@ -90,9 +90,9 @@ final class MyFilters implements FiltersProvider
 
 After that, add you filters provider as a service to your config (neon) file.
 
-```yaml
+```neon
 services:
-    - MyFilters
+	- MyFilters
 ```
 
 That's all.
@@ -101,7 +101,7 @@ That's all.
 
 ### `Filectime`
 
-```html
+```latte
 <link rel="stylesheet" href="{=$basePath/assets/theme.css|filectime}">
 ```
 
@@ -111,7 +111,7 @@ That's all.
 
 ### `Email`
 
-```smarty
+```latte
 {var $email = "my@email.net"}
 
 {$email|email:"javascript"}
@@ -136,18 +136,18 @@ This is my email: <a href="mailto: my[at]email.org">my[at]email.org</a>
 
 #### Nette DI setup
 
-```yaml
+```neon
 services:
-    nette.latteFactory:
-        setup:
-            - addFilter('email', ['Contributte\Latte\Filters\EmailFilter', 'filter'])
+	nette.latteFactory:
+		setup:
+			- addFilter('email', ['Contributte\Latte\Filters\EmailFilter', 'filter'])
 ```
 
 ### Gravatar
 
 Create link to [gravatar image](https://cs.gravatar.com/site/implement/images/)
 
-```html
+```latte
 <img src="{lorem@ipsum.com|gravatar}"/>
 <img src="https://www.gravatar.com/avatar/067398c3f23785981cd8672e21643405.jpg?default=retro&size=80"/>
 ```
@@ -163,24 +163,24 @@ Create link to [gravatar image](https://cs.gravatar.com/site/implement/images/)
 
 Number formatter is simple wrapper class over the `number_format` function.
 
-```yaml
+```neon
 services:
-    formatter.money:
-        # with defined prefix
-        class: Contributte\Latte\Formatters\NumberFormatter('Kč')
+	formatter.money:
+		# with defined prefix
+		class: Contributte\Latte\Formatters\NumberFormatter('Kč')
 
-    formatter.weight:
-        # with defined prefix and suffix
-        class: Contributte\Latte\Formatters\NumberFormatter('kg', '~')
-        setup:
-            - setThousands('')
-            - setDecimals(0)
+	formatter.weight:
+		# with defined prefix and suffix
+		class: Contributte\Latte\Formatters\NumberFormatter('kg', '~')
+		setup:
+			- setThousands('')
+			- setDecimals(0)
 
-    nette.latteFactory:
-        setup:
-            # used as latte filter
-            - addFilter(money, [@formatter.number, format])
-            - addFilter(weight, [@formatter.weight, format])
+	nette.latteFactory:
+		setup:
+			# used as latte filter
+			- addFilter(money, [@formatter.number, format])
+			- addFilter(weight, [@formatter.weight, format])
 ```
 
 Methods:
