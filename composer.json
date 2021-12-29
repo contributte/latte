@@ -20,7 +20,7 @@
     "latte/latte": "^2.5.1"
   },
   "require-dev": {
-    "nette/application": "~3.0.0",
+    "nette/application": "^3.0",
     "nette/di": "~3.0.0",
     "ninjify/nunjuck": "^0.4",
     "ninjify/qa": "^0.12",
