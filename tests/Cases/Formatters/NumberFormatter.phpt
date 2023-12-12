@@ -140,9 +140,7 @@ test(function (): void {
 
 test(function (): void {
 	$formatter = new NumberFormatter();
-	$formatter->setCallback(function ($prefix, $value, $suffix): array {
-		return [$prefix, $value, $suffix];
-	});
+	$formatter->setCallback(fn ($prefix, $value, $suffix): array => [$prefix, $value, $suffix]);
 
 	$res = $formatter->format('10.1');
 	Assert::same('', $res[0]);

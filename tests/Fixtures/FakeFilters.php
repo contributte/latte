@@ -13,9 +13,7 @@ final class FakeFilters implements FiltersProvider
 	public function getFilters(): array
 	{
 		return [
-			'say' => function ($hi) {
-				return sprintf('Hi %s!', $hi);
-			},
+			'say' => fn ($hi) => sprintf('Hi %s!', $hi),
 		];
 	}
 
