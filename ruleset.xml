@@ -13,6 +13,10 @@
 		</properties>
 	</rule>
 
+	<rule ref="SlevomatCodingStandard.PHP.DisallowReference.DisallowedReturningReference">
+		<exclude-pattern>src/Extensions/Node/*.php</exclude-pattern>
+	</rule>
+
 	<!-- Excludes -->
 	<exclude-pattern>/tests/tmp</exclude-pattern>
 </ruleset>
