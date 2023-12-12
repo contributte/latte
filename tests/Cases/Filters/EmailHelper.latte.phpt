@@ -1,10 +1,7 @@
 <?php declare(strict_types = 1);
 
-/**
- * Test: EmailFilter - Latte parsing
- */
-
 use Contributte\Latte\Filters\EmailFilter;
+use Contributte\Tester\Toolkit;
 use Latte\Engine;
 use Latte\Loaders\StringLoader;
 use Tester\Assert;
@@ -13,7 +10,7 @@ require __DIR__ . '/../../bootstrap.php';
 
 $template = '<a href="mailto:%s" >%s</a>';
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$email = 'my@email.com';
 
 	$latte = new Engine();
@@ -23,7 +20,7 @@ test(function (): void {
 	Assert::equal($email, $output);
 });
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$email = 'my@email.com';
 	$output1 = EmailFilter::filter($email, EmailFilter::ENCODE_DRUPAL);
 
@@ -35,7 +32,7 @@ test(function (): void {
 	Assert::equal((string) $output1, $output2);
 });
 
-test(function () use ($template): void {
+Toolkit::test(function () use ($template): void {
 	$email = 'my@email.com';
 	$output = sprintf($template, 'my[at]email.com', 'my[at]email.com');
 

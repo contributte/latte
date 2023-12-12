@@ -1,15 +1,12 @@
 <?php declare(strict_types = 1);
 
-/**
- * @Test Filters\GravatarFilter
- */
-
 use Contributte\Latte\Filters\GravatarFilter;
+use Contributte\Tester\Toolkit;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function (): void {
+Toolkit::test(function (): void {
 	$url = GravatarFilter::filter('lorem@ipsum.com');
 	Assert::equal('https://www.gravatar.com/avatar/067398c3f23785981cd8672e21643405.jpg?default=retro&size=80', $url);
 

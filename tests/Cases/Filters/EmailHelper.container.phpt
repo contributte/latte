@@ -1,10 +1,8 @@
 <?php declare(strict_types = 1);
 
-/**
- * Test: EmailFilter - Container
- */
-
 use Contributte\Latte\Filters\EmailFilter;
+use Contributte\Tester\Environment;
+use Contributte\Tester\Toolkit;
 use Latte\Engine;
 use Nette\DI\Compiler;
 use Nette\DI\Config\Loader;
@@ -17,13 +15,13 @@ require __DIR__ . '/../../bootstrap.php';
 
 $template = '<a href="mailto:%s" >%s</a>';
 
-test(function () use ($template): void {
-	$loader = new ContainerLoader(TEMP_DIR, true);
+Toolkit::test(function () use ($template): void {
+	$loader = new ContainerLoader(Environment::getTestDir(), true);
 	$class = $loader->load(function (Compiler $compiler): void {
 		$loader = new Loader();
 		$config = $loader->load(FileMock::create('
 		services:
-			latteFactory: 
+			latteFactory:
 				class: Latte\Engine
 				setup:
 					- addFilter(email, [Contributte\Latte\Filters\EmailFilter, filter])
