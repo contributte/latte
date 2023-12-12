@@ -2,7 +2,7 @@
 
 namespace Contributte\Latte\Filters;
 
-use Contributte\Latte\Exception\Logical\FileNotFoundException;
+use Contributte\Latte\Exception\RuntimeException;
 
 class FilectimeFilter
 {
@@ -15,7 +15,7 @@ class FilectimeFilter
 	public static function filectime(string $file, string $format = 'U'): string
 	{
 		if (!file_exists($file)) {
-			throw new FileNotFoundException(sprintf('File "%s" not found', $file));
+			throw new RuntimeException(sprintf('File "%s" not found', $file));
 		}
 
 		return date($format, (int) filectime($file));

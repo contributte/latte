@@ -2,7 +2,7 @@
 
 namespace Contributte\Latte\Exception;
 
-abstract class RuntimeException extends \RuntimeException
+class RuntimeException extends \RuntimeException
 {
 
 }

@@ -2,9 +2,9 @@
 
 namespace Contributte\Latte\DI;
 
-use Contributte\Latte\Exception\Runtime\LatteDefinitionNotFoundException;
+use Contributte\Latte\Exception\LogicalException;
 use Contributte\Latte\Filters\FiltersProvider;
-use Nette\Bridges\ApplicationLatte\ILatteFactory;
+use Nette\Bridges\ApplicationLatte\LatteFactory;
 use Nette\DI\CompilerExtension;
 use Nette\DI\Definitions\FactoryDefinition;
 
@@ -14,22 +14,25 @@ class FiltersExtension extends CompilerExtension
 	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
-
-		if ($builder->getByType(ILatteFactory::class) === null) {
-			throw new LatteDefinitionNotFoundException();
+		if ($builder->getByType(LatteFactory::class) === null) {
+			throw new LogicalException('You have to register LatteFactory first.');
 		}
 
-		$latte = $builder->getDefinitionByType(ILatteFactory::class);
+		$latte = $builder->getDefinitionByType(LatteFactory::class);
 		assert($latte instanceof FactoryDefinition);
 		$filters = $builder->findByType(FiltersProvider::class);
 
 		foreach ($filters as $definition) {
-			$latte->getResultDefinition()->addSetup(
-				'foreach (?->getFilters() as $name => $callback) {
-					?->addFilter($name, $callback);
-				}',
-				[$definition, '@self']
-			);
+			$latte
+				->getResultDefinition()
+				->addSetup(
+					<<<'PHP'
+					foreach (?->getFilters() as $name => $callback) {
+						?->addFilter($name, $callback);
+					}
+					PHP,
+					[$definition, '@self']
+				);
 		}
 	}
 

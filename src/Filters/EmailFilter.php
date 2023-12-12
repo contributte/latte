@@ -2,7 +2,7 @@
 
 namespace Contributte\Latte\Filters;
 
-use Contributte\Latte\Exception\Logical\InvalidArgumentException;
+use Contributte\Latte\Exception\LogicalException;
 use Latte\Runtime\Html;
 
 class EmailFilter
@@ -59,13 +59,13 @@ class EmailFilter
 
 		if ($encode === 'hex') {
 			preg_match('!^(.*)(\?.*)$!', $address, $match);
-			if (!empty($match[2])) {
-				throw new InvalidArgumentException('mailto: hex encoding does not work with extra attributes. Try javascript.');
+			if (!empty($match[2])) { // @phpstan-ignore-line
+				throw new LogicalException('mailto: hex encoding does not work with extra attributes. Try javascript.');
 			}
 
 			$address_encode = '';
 			for ($x = 0, $_length = strlen($address); $x < $_length; $x++) {
-				if (preg_match('!\w!u', $address[$x])) {
+				if (preg_match('!\w!u', $address[$x]) !== false) {
 					$address_encode .= '%' . bin2hex($address[$x]);
 				} else {
 					$address_encode .= $address[$x];

@@ -4,7 +4,7 @@ namespace Contributte\Latte\Exception;
 
 use LogicException;
 
-abstract class LogicalException extends LogicException
+class LogicalException extends LogicException
 {
 
 }

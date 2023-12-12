@@ -2,12 +2,12 @@
 
 namespace Contributte\Latte\DI;
 
-use Contributte\Latte\Exception\Runtime\LatteDefinitionNotFoundException;
-use Contributte\Latte\Macros\VersionMacros;
-use Nette\Bridges\ApplicationLatte\ILatteFactory;
+use Contributte\Latte\Exception\LogicalException;
+use Contributte\Latte\Extensions\VersionExtension as LatteVersionExtension;
+use Nette\Bridges\ApplicationLatte\LatteFactory;
 use Nette\DI\CompilerExtension;
 use Nette\DI\Definitions\FactoryDefinition;
-use Nette\PhpGenerator\PhpLiteral;
+use Nette\DI\Definitions\Statement;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 use stdClass;
@@ -33,11 +33,11 @@ class VersionExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 		$config = $this->config;
 
-		if ($builder->getByType(ILatteFactory::class) === null) {
-			throw new LatteDefinitionNotFoundException();
+		if ($builder->getByType(LatteFactory::class) === null) {
+			throw new LogicalException('You have to register LatteFactoryfirst.');
 		}
 
-		$factoryDefinition = $builder->getDefinitionByType(ILatteFactory::class);
+		$factoryDefinition = $builder->getDefinitionByType(LatteFactory::class);
 		assert($factoryDefinition instanceof FactoryDefinition);
 
 		if ($config->generated) {
@@ -48,11 +48,7 @@ class VersionExtension extends CompilerExtension
 
 		$factoryDefinition
 			->getResultDefinition()
-			->addSetup('?->onCompile[] = function ($engine) { ?::install($engine->getCompiler(), ?); }', [
-				'@self',
-				new PhpLiteral(VersionMacros::class),
-				(array) $config,
-			]);
+			->addSetup('addExtension', [new Statement(LatteVersionExtension::class, [(array) $config])]);
 	}
 
 }

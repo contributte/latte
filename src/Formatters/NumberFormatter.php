@@ -2,7 +2,7 @@
 
 namespace Contributte\Latte\Formatters;
 
-use Contributte\Latte\Exception\Logical\InvalidArgumentException;
+use Contributte\Latte\Exception\LogicalException;
 use Nette\Utils\Html;
 
 class NumberFormatter
@@ -121,7 +121,7 @@ class NumberFormatter
 
 		if (!is_numeric($value)) {
 			if ($this->strict) {
-				throw new InvalidArgumentException('Value must be numeric');
+				throw new LogicalException('Value must be numeric');
 			}
 
 			return $value;
