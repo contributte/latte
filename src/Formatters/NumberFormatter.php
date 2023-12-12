@@ -8,38 +8,28 @@ use Nette\Utils\Html;
 class NumberFormatter
 {
 
-	/** @var mixed */
-	private $rawValue;
+	private mixed $rawValue;
 
-	/** @var string */
-	private $thousands = ' ';
+	private string $thousands = ' ';
 
-	/** @var int */
-	private $decimals = 2;
+	private int $decimals = 2;
 
-	/** @var string */
-	private $point = ',';
+	private string $point = ',';
 
 	/** @var callable|null */
 	private $callback;
 
-	/** @var bool */
-	private $zeros = false;
+	private bool $zeros = false;
 
-	/** @var bool */
-	private $strict = true;
+	private bool $strict = true;
 
-	/** @var bool */
-	private $spaces = true;
+	private bool $spaces = true;
 
-	/** @var string */
-	private $prefix;
+	private string $prefix;
 
-	/** @var string */
-	private $suffix;
+	private string $suffix;
 
-	/** @var Html */
-	private $wrapper;
+	private Html $wrapper;
 
 	public function __construct(string $suffix = '', string $prefix = '')
 	{
@@ -52,61 +42,67 @@ class NumberFormatter
 	public function setDecimals(int $number): self
 	{
 		$this->decimals = $number;
+
 		return $this;
 	}
 
 	public function setPoint(string $separator): self
 	{
 		$this->point = $separator;
+
 		return $this;
 	}
 
 	public function setThousands(string $separator): self
 	{
 		$this->thousands = $separator;
+
 		return $this;
 	}
 
 	public function setZeros(bool $show = true): self
 	{
 		$this->zeros = $show;
+
 		return $this;
 	}
 
 	public function setSuffix(string $suffix): self
 	{
 		$this->suffix = $suffix;
+
 		return $this;
 	}
 
 	public function setPrefix(string $prefix): self
 	{
 		$this->prefix = $prefix;
+
 		return $this;
 	}
 
 	public function setStrict(bool $throw = true): self
 	{
 		$this->strict = $throw;
+
 		return $this;
 	}
 
 	public function setSpaces(bool $display = true): self
 	{
 		$this->spaces = $display;
+
 		return $this;
 	}
 
 	public function setCallback(callable $callback): self
 	{
 		$this->callback = $callback;
+
 		return $this;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getRawValue()
+	public function getRawValue(): mixed
 	{
 		return $this->rawValue;
 	}
@@ -116,11 +112,7 @@ class NumberFormatter
 		return $this->wrapper;
 	}
 
-	/**
-	 * @param mixed $value
-	 * @return mixed
-	 */
-	public function format($value, ?int $decimals = null)
+	public function format(mixed $value, ?int $decimals = null): mixed
 	{
 		if (is_string($value)) {
 			$value = trim($value);
@@ -162,10 +154,7 @@ class NumberFormatter
 		}
 	}
 
-	/**
-	 * @param mixed $value
-	 */
-	public function formatHtml($value, ?int $decimals = null): Html
+	public function formatHtml(mixed $value, ?int $decimals = null): Html
 	{
 		$wrapper = clone $this->wrapper;
 		$wrapper->setHtml($this->format($value, $decimals));

@@ -12,7 +12,7 @@ class VersionMacros extends MacroSet
 {
 
 	/** @var mixed[] */
-	private $config;
+	private array $config;
 
 	/**
 	 * @param mixed[] $config
@@ -20,6 +20,7 @@ class VersionMacros extends MacroSet
 	public function __construct(Compiler $compiler, array $config)
 	{
 		parent::__construct($compiler);
+
 		$this->config = $config;
 	}
 

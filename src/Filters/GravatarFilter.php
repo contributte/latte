@@ -13,6 +13,7 @@ class GravatarFilter
 		$format = $parameters['format'] ?? 'jpg';
 		$style = $parameters['style'] ?? 'retro';
 		$size = $parameters['size'] ?? '80';
+
 		return sprintf('https://www.gravatar.com/avatar/%s.%s?default=%s&size=%s', md5($email), $format, $style, $size);
 	}
 
