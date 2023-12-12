@@ -20,14 +20,11 @@
     "latte/latte": "^3.0.12"
   },
   "require-dev": {
-    "nette/application": "^3.0",
-    "nette/di": "~3.0.0",
+    "nette/application": "^3.1.14",
+    "nette/di": "^3.0.17",
     "contributte/qa": "^0.4",
     "contributte/tester": "^0.4",
     "contributte/phpstan": "^0.1"
-  },
-  "conflict": {
-    "nette/di": "<3.0.0"
   },
   "suggest": {
     "nette/di": "to use VersionExtension[CompilerExtension]"
@@ -39,7 +36,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Fixtures\\": "tests/fixtures"
+      "Tests\\": "tests"
     }
   },
   "minimum-stability": "dev",
