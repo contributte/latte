@@ -17,6 +17,7 @@ class CdnNode extends StatementNode
 	{
 		$node = new self();
 		$node->path = $tag->parser->parseExpression();
+
 		return $node;
 	}
 
@@ -29,6 +30,7 @@ class CdnNode extends StatementNode
 		);
 	}
 
+	/** @phpcs:disable SlevomatCodingStandard.PHP.DisallowReference.DisallowedReturningReference */
 	public function &getIterator(): Generator
 	{
 		yield $this->path;

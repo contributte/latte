@@ -17,6 +17,9 @@ class CdnExtension extends Extension
 	{
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getTags(): array
 	{
 		return [
@@ -24,6 +27,9 @@ class CdnExtension extends Extension
 		];
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getProviders(): array
 	{
 		return [
@@ -41,6 +47,9 @@ class CdnExtension extends Extension
 		];
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function getFilters(): array
 	{
 		return [
