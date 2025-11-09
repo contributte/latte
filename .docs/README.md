@@ -6,6 +6,7 @@ Extra contribution to [`nette/latte`](https://github.com/nette/latte).
 
 - [Setup](#setup)
 - [VersionExtension - revision macros for assets](#versions-extension)
+- [CdnExtension - CDN support for assets](#cdn-extension)
 - [FiltersExtension - install filters easily](#filters-extension)
 - [RuntimeFilters - collection of prepared filters](#runtimefilters)
 - [Formatters - collection of prepared formatters](#formatters)
@@ -50,6 +51,45 @@ version:
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={rev}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={build}">
 <link rel="stylesheet" href="{$basePath}/assets/theme.css?v={v}">
+```
+
+## CDN Extension
+
+This extension provides CDN support with `{cdn}` macro and `|cdn` filter for managing asset URLs.
+
+### Install
+
+```neon
+extensions:
+	cdn: Contributte\Latte\DI\CdnExtension
+```
+
+### Configuration
+
+```neon
+cdn:
+	url: https://cdn.example.com
+	cacheBusting: time # or false
+```
+
+### Usage
+
+```latte
+{* Macro syntax *}
+<link rel="stylesheet" href="{cdn 'assets/style.css'}">
+
+{* Filter syntax *}
+<script src="{='assets/dist/app.js'|cdn}"></script>
+```
+
+**Development (empty url):**
+```
+/assets/style.css?time=123456789
+```
+
+**Production (with CDN url):**
+```
+https://cdn.example.com/assets/style.css?time=123456789
 ```
 
 ## Filters Extension
