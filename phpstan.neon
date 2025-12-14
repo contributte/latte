@@ -3,7 +3,7 @@ includes:
 
 parameters:
 	level: 9
-	phpVersion: 80100
+	phpVersion: 80200
 
 	scanDirectories:
 		- src
@@ -16,3 +16,7 @@ parameters:
 		- .docs
 
 	ignoreErrors:
+		# ParsedownExtra is an optional dependency
+		- '#unknown class ParsedownExtra#i'
+		- '#invalid type ParsedownExtra#i'
+		- '#Instantiated class ParsedownExtra not found#'
