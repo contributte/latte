@@ -25,40 +25,43 @@ Toolkit::test(function (): void {
 // Test onProcess callback
 Toolkit::test(function (): void {
 	$adapter = new ParsedownExtraAdapter(new FakeParsedownExtra());
-	$called = false;
-	$adapter->onProcess[] = function (string $text, ParsedownExtraAdapter $a) use (&$called): void {
-		$called = true;
+	$state = new stdClass();
+	$state->called = false;
+	$adapter->onProcess[] = function (string $text, ParsedownExtraAdapter $a) use ($state): void {
+		$state->called = true;
 		Assert::equal('Test', $text);
 	};
 
 	$adapter->process('Test');
-	Assert::true($called);
+	Assert::true($state->called);
 });
 
 // Test onProcess callback for line
 Toolkit::test(function (): void {
 	$adapter = new ParsedownExtraAdapter(new FakeParsedownExtra());
-	$called = false;
-	$adapter->onProcess[] = function (string $line, ParsedownExtraAdapter $a) use (&$called): void {
-		$called = true;
+	$state = new stdClass();
+	$state->called = false;
+	$adapter->onProcess[] = function (string $line, ParsedownExtraAdapter $a) use ($state): void {
+		$state->called = true;
 		Assert::equal('Test Line', $line);
 	};
 
 	$adapter->processLine('Test Line');
-	Assert::true($called);
+	Assert::true($state->called);
 });
 
 // Test multiple onProcess callbacks
 Toolkit::test(function (): void {
 	$adapter = new ParsedownExtraAdapter(new FakeParsedownExtra());
-	$callCount = 0;
-	$adapter->onProcess[] = function () use (&$callCount): void {
-		$callCount++;
+	$state = new stdClass();
+	$state->callCount = 0;
+	$adapter->onProcess[] = function () use ($state): void {
+		$state->callCount++;
 	};
-	$adapter->onProcess[] = function () use (&$callCount): void {
-		$callCount++;
+	$adapter->onProcess[] = function () use ($state): void {
+		$state->callCount++;
 	};
 
 	$adapter->process('Test');
-	Assert::equal(2, $callCount);
+	Assert::equal(2, $state->callCount);
 });
