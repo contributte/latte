@@ -7,6 +7,7 @@ Extra contribution to [`nette/latte`](https://github.com/nette/latte).
 - [Setup](#setup)
 - [VersionExtension - revision macros for assets](#versions-extension)
 - [CdnExtension - CDN support for assets](#cdn-extension)
+- [ParsedownExtension - markdown parsing support](#parsedown-extension)
 - [FiltersExtension - install filters easily](#filters-extension)
 - [RuntimeFilters - collection of prepared filters](#runtimefilters)
 - [Formatters - collection of prepared formatters](#formatters)
@@ -90,6 +91,59 @@ cdn:
 **Production (with CDN url):**
 ```
 https://cdn.example.com/assets/style.css?time=123456789
+```
+
+## Parsedown Extension
+
+This extension provides markdown parsing support via the `|parsedown` filter using [ParsedownExtra](https://github.com/erusev/parsedown-extra).
+
+### Requirements
+
+The `erusev/parsedown-extra` package is an optional dependency. Install it first:
+
+```bash
+composer require erusev/parsedown-extra
+```
+
+### Install
+
+```neon
+extensions:
+	parsedown: Contributte\Latte\DI\ParsedownExtension
+```
+
+### Configuration
+
+```neon
+parsedown:
+	filter: parsedown # default filter name, can be changed to e.g. "markdown"
+```
+
+### Usage
+
+```latte
+{* Filter syntax *}
+{$markdownContent|parsedown}
+
+{* Block syntax *}
+{block|parsedown}
+# Hello World
+
+This is **markdown** content.
+{/block}
+```
+
+### Advanced Usage
+
+You can use the `ParsedownExtraAdapter` directly with callbacks for custom processing:
+
+```php
+use Contributte\Latte\Filters\ParsedownExtraAdapter;
+
+$adapter = $container->getByType(ParsedownExtraAdapter::class);
+$adapter->onProcess[] = function (string $text, ParsedownExtraAdapter $adapter): void {
+	// Custom processing before markdown parsing
+};
 ```
 
 ## Filters Extension
