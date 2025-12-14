@@ -27,7 +27,8 @@
     "contributte/phpstan": "^0.1"
   },
   "suggest": {
-    "nette/di": "to use VersionExtension[CompilerExtension]"
+    "nette/di": "to use VersionExtension[CompilerExtension]",
+    "erusev/parsedown-extra": "to use ParsedownExtension[CompilerExtension]"
   },
   "autoload": {
     "psr-4": {
