@@ -24,7 +24,7 @@ class CdnNode extends StatementNode
 	public function print(PrintContext $context): string
 	{
 		return $context->format(
-			'echo LR\Filters::escapeHtmlAttr(call_user_func($this->global->cdnBuilder, %0.node)) %1.line;',
+			'echo LR\HtmlHelpers::escapeAttr(call_user_func($this->global->cdnBuilder, %0.node)) %1.line;',
 			$this->path,
 			$this->position,
 		);
