@@ -3,6 +3,7 @@
 use Contributte\Latte\Exception\LogicalException;
 use Contributte\Latte\Filters\ParsedownExtraAdapter;
 use Contributte\Latte\Filters\ParsedownFilter;
+use Contributte\Tester\Toolkit;
 use Latte\ContentType;
 use Latte\Runtime\FilterInfo;
 use Tester\Assert;
