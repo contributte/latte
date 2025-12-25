@@ -20,11 +20,11 @@
     "latte/latte": "^3.1.0"
   },
   "require-dev": {
+    "contributte/phpstan": "^0.1",
+    "contributte/qa": "^0.4",
     "nette/application": "^3.1.14",
     "nette/di": "^3.0.17",
-    "contributte/qa": "^0.4",
-    "contributte/tester": "^0.4",
-    "contributte/phpstan": "^0.1"
+    "nette/tester": "^2.5"
   },
   "suggest": {
     "nette/di": "to use VersionExtension[CompilerExtension]",
