@@ -1,8 +1,6 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\Filters\EmailFilter;
-use Contributte\Tester\Environment;
-use Contributte\Tester\Toolkit;
 use Latte\Engine;
 use Nette\DI\Compiler;
 use Nette\DI\Config\Loader;
@@ -16,7 +14,7 @@ require __DIR__ . '/../../bootstrap.php';
 $template = '<a href="mailto:%s" >%s</a>';
 
 Toolkit::test(function () use ($template): void {
-	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
 		$loader = new Loader();
 		$config = $loader->load(FileMock::create('
@@ -33,7 +31,7 @@ Toolkit::test(function () use ($template): void {
 	$container = new $class();
 
 	/** @var Engine $latte */
-	$latte = $container->getByType(Engine::class);
+	$latte = $container->getService('latteFactory');
 
 	Assert::equal(sprintf($template, 'my[at]email.com', 'my[at]email.com'), (string) $latte->invokeFilter('email', ['my@email.com', EmailFilter::ENCODE_DRUPAL]));
 });

@@ -2,7 +2,6 @@
 
 use Contributte\Latte\Exception\LogicalException;
 use Contributte\Latte\Formatters\NumberFormatter;
-use Contributte\Tester\Toolkit;
 use Tester\Assert;
 
 require __DIR__ . '/../../bootstrap.php';

@@ -1,8 +1,6 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\DI\VersionExtension;
-use Contributte\Tester\Environment;
-use Contributte\Tester\Toolkit;
 use Nette\Bridges\ApplicationDI\LatteExtension;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\Compiler;
@@ -14,9 +12,9 @@ use Tester\FileMock;
 require_once __DIR__ . '/../../bootstrap.php';
 
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
+		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
 		$compiler->addExtension('version', new VersionExtension());
 		$compiler->loadConfig(FileMock::create('
 		version:
@@ -36,9 +34,9 @@ Toolkit::test(function (): void {
 });
 
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
+		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
 		$compiler->addExtension('version', new VersionExtension());
 		$compiler->loadConfig(FileMock::create('
 		version:
