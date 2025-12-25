@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\Filters\EmailFilter;
+use Contributte\Tester\Toolkit;
 use Latte\Engine;
 use Latte\Loaders\StringLoader;
 use Tester\Assert;

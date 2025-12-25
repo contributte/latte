@@ -19,5 +19,4 @@
 
 	<!-- Excludes -->
 	<exclude-pattern>/tests/tmp</exclude-pattern>
-	<exclude-pattern>/tests/bootstrap.php</exclude-pattern>
 </ruleset>

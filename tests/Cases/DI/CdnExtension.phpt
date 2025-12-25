@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\DI\CdnExtension;
+use Contributte\Tester\Environment;
+use Contributte\Tester\Toolkit;
 use Nette\Bridges\ApplicationDI\LatteExtension;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\Compiler;
@@ -13,9 +15,9 @@ require_once __DIR__ . '/../../bootstrap.php';
 
 // Test DI integration with CDN URL
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(TEMP_DIR, true);
+	$loader = new ContainerLoader(Environment::getTestDir(), true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
+		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
 		$compiler->addExtension('cdn', new CdnExtension());
 		$compiler->loadConfig(FileMock::create('
 		cdn:
@@ -35,9 +37,9 @@ Toolkit::test(function (): void {
 
 // Test DI integration with CDN URL and cacheBusting
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(TEMP_DIR, true);
+	$loader = new ContainerLoader(Environment::getTestDir(), true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
+		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
 		$compiler->addExtension('cdn', new CdnExtension());
 		$compiler->loadConfig(FileMock::create('
 		cdn:
@@ -61,9 +63,9 @@ Toolkit::test(function (): void {
 
 // Test DI integration without CDN URL (localhost mode)
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(TEMP_DIR, true);
+	$loader = new ContainerLoader(Environment::getTestDir(), true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
+		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
 		$compiler->addExtension('cdn', new CdnExtension());
 		$compiler->loadConfig(FileMock::create('
 		cdn:
@@ -87,9 +89,9 @@ Toolkit::test(function (): void {
 
 // Test DI integration with minimal config
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(TEMP_DIR, true);
+	$loader = new ContainerLoader(Environment::getTestDir(), true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
+		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
 		$compiler->addExtension('cdn', new CdnExtension());
 	}, 4);
 
