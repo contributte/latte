@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+use Contributte\Latte\Exception\LogicalException;
 use Contributte\Latte\Filters\EmailFilter;
 use Contributte\Tester\Toolkit;
 use Latte\Runtime\Html;
@@ -54,4 +55,17 @@ Toolkit::test(function () use ($template): void {
 
 	Assert::notEqual($email, $output);
 	Assert::equal(sprintf($template, 'my[at]email.com', 'MY EMAIL'), (string) $output);
+});
+
+// Test hex encoding throws exception for email with query string
+Toolkit::test(function (): void {
+	Assert::exception(function (): void {
+		EmailFilter::filter('test@example.com?subject=Hello', EmailFilter::ENCODE_HEX);
+	}, LogicalException::class, 'mailto: hex encoding does not work with extra attributes. Try javascript.');
+});
+
+// Test texy encoding with custom text
+Toolkit::test(function (): void {
+	$email = EmailFilter::filter('latte@contributte.org', EmailFilter::ENCODE_TEXY, 'Contact Us');
+	Assert::equal('<a href="mailto:latte<!-- ANTISPAM -->&#64;<!-- /ANTISPAM -->contributte.org" >Contact Us</a>', (string) $email);
 });

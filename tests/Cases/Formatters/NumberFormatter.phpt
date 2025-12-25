@@ -162,3 +162,16 @@ Toolkit::test(function (): void {
 	$p->setName('div');
 	Assert::same('<div>10,1</div>', (string) $formatter->formatHtml('10.1'));
 });
+
+// Test getRawValue
+Toolkit::test(function (): void {
+	$formatter = new NumberFormatter();
+	$formatter->format(42.5);
+	Assert::same(42.5, $formatter->getRawValue());
+
+	$formatter->format('100.25');
+	Assert::same('100.25', $formatter->getRawValue());
+
+	$formatter->format(1000);
+	Assert::same(1000, $formatter->getRawValue());
+});
