@@ -1,7 +1,6 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\Filters\CdnFilter;
-use Contributte\Tester\Toolkit;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';

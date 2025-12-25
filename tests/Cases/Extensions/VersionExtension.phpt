@@ -1,8 +1,6 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\Extensions\VersionExtension;
-use Contributte\Tester\Environment;
-use Contributte\Tester\Toolkit;
 use Latte\Engine;
 use Latte\Loaders\StringLoader;
 use Tester\Assert;
@@ -12,7 +10,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new VersionExtension([
 		'rev' => 1,
@@ -28,7 +26,7 @@ Toolkit::test(function (): void {
 
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->addExtension(new VersionExtension([
 		'rev' => 1,
 		'build' => 2,

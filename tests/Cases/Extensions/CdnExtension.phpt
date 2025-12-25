@@ -1,8 +1,6 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\Extensions\CdnExtension;
-use Contributte\Tester\Environment;
-use Contributte\Tester\Toolkit;
 use Latte\Engine;
 use Latte\Loaders\StringLoader;
 use Tester\Assert;
@@ -13,7 +11,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 // Test CDN macro with base URL
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => 'https://cdn.example.com',
@@ -26,7 +24,7 @@ Toolkit::test(function (): void {
 // Test CDN macro with base URL and cacheBusting
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => 'https://cdn.example.com',
@@ -40,7 +38,7 @@ Toolkit::test(function (): void {
 // Test CDN macro without base URL (localhost)
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => '',
@@ -52,7 +50,7 @@ Toolkit::test(function (): void {
 // Test CDN macro without base URL with cacheBusting
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => '',
@@ -66,7 +64,7 @@ Toolkit::test(function (): void {
 // Test CDN macro with FileMock
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->addExtension(new CdnExtension([
 		'url' => 'https://cdn.example.com',
 	]));
@@ -77,7 +75,7 @@ Toolkit::test(function (): void {
 // Test CDN filter with base URL
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => 'https://cdn.example.com',
@@ -90,7 +88,7 @@ Toolkit::test(function (): void {
 // Test CDN filter with cacheBusting
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => 'https://cdn.example.com',
@@ -104,7 +102,7 @@ Toolkit::test(function (): void {
 // Test CDN filter without base URL
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => '',
@@ -116,7 +114,7 @@ Toolkit::test(function (): void {
 // Test CDN macro with trailing slash handling
 Toolkit::test(function (): void {
 	$latte = new Engine();
-	$latte->setTempDirectory(Environment::getTestDir());
+	$latte->setTempDirectory(TEMP_DIR);
 	$latte->setLoader(new StringLoader());
 	$latte->addExtension(new CdnExtension([
 		'url' => 'https://cdn.example.com/',

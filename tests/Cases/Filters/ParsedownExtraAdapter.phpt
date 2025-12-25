@@ -1,7 +1,6 @@
 <?php declare(strict_types = 1);
 
 use Contributte\Latte\Filters\ParsedownExtraAdapter;
-use Contributte\Tester\Toolkit;
 use Tester\Assert;
 use Tests\Fixtures\FakeParsedownExtra;
 

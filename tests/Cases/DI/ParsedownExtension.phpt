@@ -2,8 +2,6 @@
 
 use Contributte\Latte\DI\ParsedownExtension;
 use Contributte\Latte\Filters\ParsedownExtraAdapter;
-use Contributte\Tester\Environment;
-use Contributte\Tester\Toolkit;
 use Nette\Bridges\ApplicationDI\LatteExtension;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\Compiler;
@@ -17,9 +15,9 @@ require_once __DIR__ . '/../../Fixtures/FakeParsedownExtra.php';
 
 // Test DI extension with default config
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
+		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
 		$compiler->addExtension('parsedown', new ParsedownExtension());
 	}, 1);
 
@@ -39,9 +37,9 @@ Toolkit::test(function (): void {
 
 // Test DI extension with custom filter name
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
+		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
 		$compiler->addExtension('parsedown', new ParsedownExtension());
 		$compiler->loadConfig(FileMock::create('
 		parsedown:
@@ -60,9 +58,9 @@ Toolkit::test(function (): void {
 
 // Test DI extension with block syntax
 Toolkit::test(function (): void {
-	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$loader = new ContainerLoader(TEMP_DIR, true);
 	$class = $loader->load(function (Compiler $compiler): void {
-		$compiler->addExtension('latte', new LatteExtension(Environment::getTestDir()));
+		$compiler->addExtension('latte', new LatteExtension(TEMP_DIR));
 		$compiler->addExtension('parsedown', new ParsedownExtension());
 	}, 3);
 
