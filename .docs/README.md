@@ -5,6 +5,7 @@ Extra contribution to [`nette/latte`](https://github.com/nette/latte).
 ## Content
 
 - [Setup](#setup)
+- [Replacus - simple string placeholder replacer](#replacus)
 - [VersionExtension - revision macros for assets](#versions-extension)
 - [CdnExtension - CDN support for assets](#cdn-extension)
 - [ParsedownExtension - markdown parsing support](#parsedown-extension)
@@ -16,6 +17,67 @@ Extra contribution to [`nette/latte`](https://github.com/nette/latte).
 
 ```bash
 composer require contributte/latte
+```
+
+## Replacus
+
+Simple string placeholder replacer using Latte templating engine. Replaces placeholders like `{$variable}` with provided values.
+
+### Usage
+
+```php
+use Contributte\Latte\Replacus\Replacus;
+
+$replacus = Replacus::create();
+
+// Simple variable replacement
+$result = $replacus->replace('Hello {$name}!', ['name' => 'World']);
+// Result: "Hello World!"
+
+// URL with placeholder
+$url = $replacus->replace('https://{$domain}/path', ['domain' => 'contributte.org']);
+// Result: "https://contributte.org/path"
+
+// Multiple variables
+$result = $replacus->replace('User {$name} has {$count} messages', [
+    'name' => 'John',
+    'count' => 5,
+]);
+// Result: "User John has 5 messages"
+
+// Array access
+$result = $replacus->replace('{$items[0]} and {$items[1]}', [
+    'items' => ['first', 'second'],
+]);
+// Result: "first and second"
+```
+
+### Custom Filters
+
+You can add custom Latte filters:
+
+```php
+$replacus = Replacus::create()
+    ->addFilter('upper', fn($s) => strtoupper($s))
+    ->addFilter('trim', fn($s) => trim($s));
+
+$result = $replacus->replace('{$text|trim|upper}', ['text' => '  hello  ']);
+// Result: "HELLO"
+```
+
+### Custom Latte Engine
+
+For advanced usage, you can provide your own configured Latte engine:
+
+```php
+use Latte\Engine;
+use Latte\Loaders\StringLoader;
+
+$latte = new Engine();
+$latte->setLoader(new StringLoader());
+// ... configure as needed
+
+$replacus = new Replacus($latte);
 ```
 
 ## Version(s) Extension
