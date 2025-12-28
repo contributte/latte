@@ -2,6 +2,8 @@
 
 use Contributte\Latte\Replacus\Replacus;
 use Contributte\Tester\Toolkit;
+use Latte\Engine;
+use Latte\Loaders\StringLoader;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -47,15 +49,15 @@ Toolkit::test(function (): void {
 // Test with custom filter
 Toolkit::test(function (): void {
 	$replacus = Replacus::create();
-	$replacus->addFilter('upper', fn($s) => strtoupper($s));
+	$replacus->addFilter('upper', fn ($s) => strtoupper($s));
 	$result = $replacus->replace('{$text|upper}', ['text' => 'hello']);
 	Assert::equal('HELLO', $result);
 });
 
 // Test constructor with custom Latte engine
 Toolkit::test(function (): void {
-	$latte = new Latte\Engine();
-	$latte->setLoader(new Latte\Loaders\StringLoader());
+	$latte = new Engine();
+	$latte->setLoader(new StringLoader());
 
 	$replacus = new Replacus($latte);
 	$result = $replacus->replace('{$foo}', ['foo' => 'custom']);
@@ -65,7 +67,7 @@ Toolkit::test(function (): void {
 // Test getLatte method
 Toolkit::test(function (): void {
 	$replacus = Replacus::create();
-	Assert::type(Latte\Engine::class, $replacus->getLatte());
+	Assert::type(Engine::class, $replacus->getLatte());
 });
 
 // Test empty args
@@ -78,8 +80,8 @@ Toolkit::test(function (): void {
 // Test fluent interface for addFilter
 Toolkit::test(function (): void {
 	$replacus = Replacus::create()
-		->addFilter('lower', fn($s) => strtolower($s))
-		->addFilter('trim', fn($s) => trim($s));
+		->addFilter('lower', fn ($s) => strtolower($s))
+		->addFilter('trim', fn ($s) => trim($s));
 
 	$result = $replacus->replace('{$text|trim|lower}', ['text' => '  HELLO  ']);
 	Assert::equal('hello', $result);
