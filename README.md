@@ -2,7 +2,7 @@
 
 <p align=center>
   <a href="https://github.com/contributte/latte/actions"><img src="https://badgen.net/github/checks/contributte/latte/master?cache=300"></a>
-  <a href="https://coveralls.io/r/contributte/latte"><img src="https://badgen.net/coveralls/c/github/contributte/latte?cache=300"></a>
+  <a href="https://codecov.io/gh/contributte/latte"><img src="https://badgen.net/codecov/c/github/contributte/latte"></a>
   <a href="https://packagist.org/packages/contributte/latte"><img src="https://badgen.net/packagist/dm/contributte/latte"></a>
   <a href="https://packagist.org/packages/contributte/latte"><img src="https://badgen.net/packagist/v/contributte/latte"></a>
 </p>
