@@ -39,7 +39,7 @@ composer require contributte/latte
 
 Simple string placeholder replacer using Latte templating engine. Replaces placeholders like `{$variable}` with provided values.
 
-### Usage
+### Basic replacement
 
 ```php
 use Contributte\Latte\Replacus\Replacus;
@@ -100,14 +100,14 @@ $replacus = new Replacus($latte);
 
 This extension adds 3 macros: `{rev}`, `{build}`, `{v}`.
 
-### Install
+### Version extension registration
 
 ```neon
 extensions:
 	version: Contributte\Latte\DI\VersionExtension
 ```
 
-### Configuration
+### Version values
 
 ```neon
 version:
@@ -136,14 +136,14 @@ version:
 
 This extension provides CDN support with `{cdn}` macro and `|cdn` filter for managing asset URLs.
 
-### Install
+### CDN extension registration
 
 ```neon
 extensions:
 	cdn: Contributte\Latte\DI\CdnExtension
 ```
 
-### Configuration
+### CDN configuration
 
 ```neon
 cdn:
@@ -151,7 +151,7 @@ cdn:
 	cacheBusting: time # or false
 ```
 
-### Usage
+### CDN usage
 
 ```latte
 {* Macro syntax *}
@@ -183,21 +183,21 @@ The `erusev/parsedown-extra` package is an optional dependency. Install it first
 composer require erusev/parsedown-extra
 ```
 
-### Install
+### Parsedown extension registration
 
 ```neon
 extensions:
 	parsedown: Contributte\Latte\DI\ParsedownExtension
 ```
 
-### Configuration
+### Parsedown configuration
 
 ```neon
 parsedown:
 	filter: parsedown # default filter name, can be changed to e.g. "markdown"
 ```
 
-### Usage
+### Parsedown usage
 
 ```latte
 {* Filter syntax *}
@@ -211,7 +211,7 @@ This is **markdown** content.
 {/block}
 ```
 
-### Advanced Usage
+### Parsedown adapter usage
 
 You can use the `ParsedownExtraAdapter` directly with callbacks for custom processing:
 
@@ -228,14 +228,14 @@ $adapter->onProcess[] = function (string $text, ParsedownExtraAdapter $adapter):
 
 Install filters by single extension and simple `FiltersProvider` implementation.
 
-### Installation
+### Filters extension registration
 
 ```neon
 extensions:
 	filters: Contributte\Latte\DI\FiltersExtension
 ```
 
-### Usage
+### Filters provider usage
 
 First of all, you have to define your own filters provider. It's `key => value`, that means `name => callback` array.
 
